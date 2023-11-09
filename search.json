@@ -4,7 +4,7 @@
     "href": "assignments.html",
     "title": "Assignments",
     "section": "",
-    "text": "Download the Jupyter Notebooks in your local folder xyz.\n\nTask 1:"
+    "text": "tbd"
   },
   {
     "objectID": "slide.html",
@@ -417,20 +417,13 @@
     "href": "require.html",
     "title": "Requirements",
     "section": "",
-    "text": "To start this lab on your local machine, you’ll need:\n\n\n\n\n\n\nImportant\n\n\n\nVisit the “Programming Toolkit-webpage” to learn how to meet all requirements.\n\n\n\nSQL: MySQL, MySQL Workbench and a database called db_data\nPython: Anaconda, Anaconda Environment lab and Visual Studio Code\nEnvironment: A folder on your machine called competitive and an environment file with your MySQL password\n\n\n\n\n\n\n\nImportant\n\n\n\nVisit the “Programming Toolkit-webpage” to learn how to meet all requirements."
+    "text": "To start this lab on your local machine, you’ll need to install the modules listed in requirements.txt\n\n\n\n\n\n\nImportant\n\n\n\nVisit the “Programming Toolkit-webpage” to learn how to meet all requirements."
   },
   {
     "objectID": "require.html#local-development",
     "href": "require.html#local-development",
     "title": "Requirements",
     "section": "",
-    "text": "To start this lab on your local machine, you’ll need:\n\n\n\n\n\n\nImportant\n\n\n\nVisit the “Programming Toolkit-webpage” to learn how to meet all requirements.\n\n\n\nSQL: MySQL, MySQL Workbench and a database called db_data\nPython: Anaconda, Anaconda Environment lab and Visual Studio Code\nEnvironment: A folder on your machine called competitive and an environment file with your MySQL password\n\n\n\n\n\n\n\nImportant\n\n\n\nVisit the “Programming Toolkit-webpage” to learn how to meet all requirements."
-  },
-  {
-    "objectID": "require.html#cloud-development",
-    "href": "require.html#cloud-development",
-    "title": "Requirements",
-    "section": "Cloud development",
-    "text": "Cloud development\nInstead of local development, you may also work in a fully configured dev environment in the cloud with GitHub Codespaces. Take a look at this site to learn more about the different options."
+    "text": "To start this lab on your local machine, you’ll need to install the modules listed in requirements.txt\n\n\n\n\n\n\nImportant\n\n\n\nVisit the “Programming Toolkit-webpage” to learn how to meet all requirements."
   }
 ]
