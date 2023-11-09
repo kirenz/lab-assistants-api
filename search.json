@@ -11,21 +11,21 @@
     "href": "slide.html",
     "title": "Slides",
     "section": "",
-    "text": "The following tutorials are mainly based on OpenAI’s documentation\nClick on one of the links “💻 Jupyter Notebook” below, go to the Colab menu and choose “File” &gt; “Download” &gt; “Download .ipynb”"
+    "text": "The following tutorials are mainly based on OpenAI’s documentation"
   },
   {
     "objectID": "slide.html#introduction-to-assistants-api",
     "href": "slide.html#introduction-to-assistants-api",
     "title": "Slides",
     "section": "1 Introduction to Assistants API",
-    "text": "1 Introduction to Assistants API\nThis starter guide walks through the key steps to create and run an Assistant that uses Code Interpreter.\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook"
+    "text": "1 Introduction to Assistants API\nThis starter guide walks through the key steps to create and run an Assistant that uses Code Interpreter.\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook in GitHub"
   },
   {
     "objectID": "slide.html#assistants-api-with-files",
     "href": "slide.html#assistants-api-with-files",
     "title": "Slides",
     "section": "2 Assistants API with Files",
-    "text": "2 Assistants API with Files\nLearn how to handle files in the Assistants API\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook"
+    "text": "2 Assistants API with Files\nLearn how to handle files in the Assistants API\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook in GitHub"
   },
   {
     "objectID": "slides/assistant-intro.html#what-is-an-assistant",
