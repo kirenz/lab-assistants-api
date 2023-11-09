@@ -17,9 +17,3 @@ The Assistants API currently supports three types of tools:
 
 
 
-::: {.callout-important}
-Make sure you meet all the [requirements](/requirements.qmd) and have read the lecture [slides](/slide.qmd) before you start with the [assignments](/assignments.qmd) 
-:::
-
-
-
