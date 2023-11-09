@@ -312,7 +312,7 @@
     "href": "index.html",
     "title": "Welcome 👋",
     "section": "",
-    "text": "Welcome to the lab “Assistants API”\nThe Assistants API allows you to build AI assistants within your own applications. An Assistant has instructions and can leverage models, tools, and knowledge to respond to user queries.\nThe Assistants API currently supports three types of tools:\n\nCode Interpreter\nRetrieval\nFunction calling\n\n\n\n\n\n\n\n\nImportant\n\n\n\nMake sure you meet all the requirements and have read the lecture slides before you start with the assignments"
+    "text": "Welcome to the lab “Assistants API”\nThe Assistants API allows you to build AI assistants within your own applications. An Assistant has instructions and can leverage models, tools, and knowledge to respond to user queries.\nThe Assistants API currently supports three types of tools:\n\nCode Interpreter\nRetrieval\nFunction calling"
   },
   {
     "objectID": "slides/assistant-files.html#how-to-obbtain-the-thread-id",
