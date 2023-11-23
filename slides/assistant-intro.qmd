@@ -84,9 +84,26 @@ client = OpenAI()
 ```
 
 
-# Step 1: Create an Assistant {.smaller}
+# Step 1: Create an Assistant 
 
-- You can also use [OpenAI's playground](https://platform.openai.com/playground?mode=assistant) to create your Assistant
+
+## Option 1: Use the Playground
+
+- You can use [OpenAI's playground](https://platform.openai.com/playground?mode=assistant) to create your Assistant in a user interface.
+
+- Get the ID of your Assistant (in the Playground below the name of the Assistant) 
+
+. . .
+
+```{python}
+OPENAI_ASSISTANT = 'asst_7rBZjKivhDiUouokmEkW2Lal'
+
+assistant = client.beta.assistants.retrieve(OPENAI_ASSISTANT)
+
+```
+
+## Option 2: Use the the Python API {.smaller}
+
 
 ```{python}
 
@@ -98,6 +115,7 @@ assistant = client.beta.assistants.create(
 )
 
 ```
+
 
 
 # Step 2: Create a Thread {.smaller}
