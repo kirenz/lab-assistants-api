@@ -180,5 +180,19 @@
     "title": "Create an Assistant",
     "section": "Extract only text response",
     "text": "Extract only text response\n\nassistant_response[0].text.value\n\n\n‘Certainly, Jane Doe. The solution to the equation \\(3x + 11 = 14\\) is \\(x = 1\\).’"
+  },
+  {
+    "objectID": "slides/assistant-intro.html#option-1-use-the-playground",
+    "href": "slides/assistant-intro.html#option-1-use-the-playground",
+    "title": "Create an Assistant",
+    "section": "Option 1: Use the Playground",
+    "text": "Option 1: Use the Playground\n\nYou can use OpenAI’s playground to create your Assistant in a user interface.\nGet the ID of your Assistant (in the Playground below the name of the Assistant)\n\n\n\nOPENAI_ASSISTANT = 'asst_7rBZjKivhDiUouokmEkW2Lal'\n\nassistant = client.beta.assistants.retrieve(OPENAI_ASSISTANT)"
+  },
+  {
+    "objectID": "slides/assistant-intro.html#option-2-use-the-the-python-api",
+    "href": "slides/assistant-intro.html#option-2-use-the-the-python-api",
+    "title": "Create an Assistant",
+    "section": "Option 2: Use the the Python API",
+    "text": "Option 2: Use the the Python API\n\nassistant = client.beta.assistants.create(\n    name=\"Math Tutor\",\n    instructions=\"You are a personal Math tutor. Write and run code to answer math questions.\",\n    tools=[{\"type\": \"code_interpreter\"}],\n    model=\"gpt-4-1106-preview\"\n)"
   }
 ]
