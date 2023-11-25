@@ -91,6 +91,20 @@
     "text": "Extract only text response\n\nassistant_response[0].text.value"
   },
   {
+    "objectID": "slides/assistant-files.html#option-1-use-the-playground",
+    "href": "slides/assistant-files.html#option-1-use-the-playground",
+    "title": "Assistants API and Files",
+    "section": "Option 1: Use the Playground",
+    "text": "Option 1: Use the Playground\n\nYou can use OpenAI’s playground to create your Assistant in a user interface.\nGet the ID of your Assistant (in the Playground below the name of the Assistant)\n\n\n\nOPENAI_ASSISTANT = 'asst_oLnJ4yhowVZrqUecc8OCtNaL'\n\nassistant = client.beta.assistants.retrieve(OPENAI_ASSISTANT)"
+  },
+  {
+    "objectID": "slides/assistant-files.html#option-2-use-the-the-python-api",
+    "href": "slides/assistant-files.html#option-2-use-the-the-python-api",
+    "title": "Assistants API and Files",
+    "section": "Option 2: Use the the Python API",
+    "text": "Option 2: Use the the Python API\n\nassistant = client.beta.assistants.create(\n    name=\"Data Visualizations\",\n    instructions=\"You are great at creating beautiful data visualizations. You analyze data present in .csv files, understand relationships between variables, and create data visualizations relevant to those relationships. You also share a brief text summary of the relationships observed.\",\n    tools=[ {\"type\": \"code_interpreter\"}],\n    model=\"gpt-4-1106-preview\",\n)"
+  },
+  {
     "objectID": "slides/assistant-files.html#how-to-obbtain-the-thread-id",
     "href": "slides/assistant-files.html#how-to-obbtain-the-thread-id",
     "title": "Assistants API and Files",
@@ -130,7 +144,7 @@
     "href": "slides/assistant-files.html#inspect-status-of-the-run",
     "title": "Assistants API and Files",
     "section": "Inspect status of the Run",
-    "text": "Inspect status of the Run\n\nYou need to wait until the status=‘completed’ before you can retrieve the Messages added by the Assistant.\nLet’s check the status\n\n\nrun.status\n\n\n‘queued’"
+    "text": "Inspect status of the Run\n\nYou need to wait until the status=‘completed’ before you can retrieve the Messages added by the Assistant.\nLet’s check the status\n\n\nrun.status\n\n\n‘queued’\nThis means we have to wait until the status is ‘completed’"
   },
   {
     "objectID": "slides/assistant-files.html#retrieve-current-run",
