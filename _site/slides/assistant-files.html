@@ -451,27 +451,45 @@ Jan Kirenz
 </div>
 </section>
 
+<section>
 <section id="create-assistant" class="title-slide slide level1 center">
 <h1>Create Assistant</h1>
+
+</section>
+<section id="option-1-use-the-playground" class="slide level2">
+<h2>Option 1: Use the Playground</h2>
+<ul>
+<li class="fragment"><p>You can use <a href="https://platform.openai.com/playground?mode=assistant">OpenAI’s playground</a> to create your Assistant in a user interface.</p></li>
+<li class="fragment"><p>Get the ID of your Assistant (in the Playground below the name of the Assistant)</p></li>
+</ul>
+<div class="fragment">
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>assistant <span class="op">=</span> client.beta.assistants.create(</span>
-<span id="cb3-2"><a href="#cb3-2"></a>    name<span class="op">=</span><span class="st">"Data Visualizations"</span>,</span>
-<span id="cb3-3"><a href="#cb3-3"></a>    instructions<span class="op">=</span><span class="st">"You are great at creating beautiful data visualizations. You analyze data present in .csv files, understand relationships between variables, and create data visualizations relevant to those relationships. You also share a brief text summary of the relationships observed."</span>,</span>
-<span id="cb3-4"><a href="#cb3-4"></a>    tools<span class="op">=</span>[ {<span class="st">"type"</span>: <span class="st">"code_interpreter"</span>}],</span>
-<span id="cb3-5"><a href="#cb3-5"></a>    model<span class="op">=</span><span class="st">"gpt-4-1106-preview"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>OPENAI_ASSISTANT <span class="op">=</span> <span class="st">'asst_oLnJ4yhowVZrqUecc8OCtNaL'</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>assistant <span class="op">=</span> client.beta.assistants.retrieve(OPENAI_ASSISTANT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </section>
-
+<section id="option-2-use-the-the-python-api" class="slide level2">
+<h2>Option 2: Use the the Python API</h2>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>assistant <span class="op">=</span> client.beta.assistants.create(</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    name<span class="op">=</span><span class="st">"Data Visualizations"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3"></a>    instructions<span class="op">=</span><span class="st">"You are great at creating beautiful data visualizations. You analyze data present in .csv files, understand relationships between variables, and create data visualizations relevant to those relationships. You also share a brief text summary of the relationships observed."</span>,</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    tools<span class="op">=</span>[ {<span class="st">"type"</span>: <span class="st">"code_interpreter"</span>}],</span>
+<span id="cb4-5"><a href="#cb4-5"></a>    model<span class="op">=</span><span class="st">"gpt-4-1106-preview"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
 <section>
 <section id="create-thread" class="title-slide slide level1 center">
 <h1>Create Thread</h1>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>thread <span class="op">=</span> client.beta.threads.create()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>thread <span class="op">=</span> client.beta.threads.create()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!--
 
-::: {.cell execution_count=5}
+::: {.cell execution_count=6}
 ``` {.python .cell-code}
 thread = client.beta.threads.create(
   messages=[
@@ -490,16 +508,16 @@ thread = client.beta.threads.create(
 </section>
 <section id="how-to-obbtain-the-thread-id" class="slide level2">
 <h2>How to Obbtain the Thread id</h2>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>thread</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>thread</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li class="fragment">Thread(id=‘thread_iB6WpSbp6r6j9ayrdHIyyafC’, created_at=1699520936, metadata={}, object=‘thread’)</li>
 </ul>
 <div class="fragment">
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>thread_id <span class="op">=</span> thread.<span class="bu">id</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="bu">print</span>(<span class="ss">f'Thread ID: </span><span class="sc">{</span>thread_id<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>thread_id <span class="op">=</span> thread.<span class="bu">id</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="bu">print</span>(<span class="ss">f'Thread ID: </span><span class="sc">{</span>thread_id<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li class="fragment">Thread ID: thread_iB6WpSbp6r6j9ayrdHIyyafC</li>
@@ -512,7 +530,7 @@ thread = client.beta.threads.create(
 
 - A Message contains the user's text, and optionally, any files that the user uploads (no images). 
 
-::: {.cell execution_count=8}
+::: {.cell execution_count=9}
 ``` {.python .cell-code}
 message = client.beta.threads.messages.create(
     thread_id=thread.id,
@@ -526,7 +544,7 @@ message = client.beta.threads.messages.create(
 
 ## Obtain message id
 
-::: {.cell execution_count=9}
+::: {.cell execution_count=10}
 ``` {.python .cell-code}
 message_id = message.id  
 print(f'Message ID: {message_id}')
@@ -545,7 +563,7 @@ print(f'Message ID: {message_id}')
 
 ## Annotations code example {.smaller}
 
-::: {.cell execution_count=10}
+::: {.cell execution_count=11}
 ``` {.python .cell-code}
 # Retrieve the message object
 message = client.beta.threads.messages.retrieve(
@@ -608,18 +626,18 @@ if message.content:
 <li class="fragment">Here, we have to upload it</li>
 </ul>
 <div class="fragment">
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>file_response <span class="op">=</span> client.files.create(</span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="bu">file</span><span class="op">=</span><span class="bu">open</span>(<span class="st">"cars.csv"</span>, <span class="st">"rb"</span>),</span>
-<span id="cb7-3"><a href="#cb7-3"></a>  purpose<span class="op">=</span><span class="st">'assistants'</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>file_response <span class="op">=</span> client.files.create(</span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="bu">file</span><span class="op">=</span><span class="bu">open</span>(<span class="st">"cars.csv"</span>, <span class="st">"rb"</span>),</span>
+<span id="cb8-3"><a href="#cb8-3"></a>  purpose<span class="op">=</span><span class="st">'assistants'</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>file_id <span class="op">=</span> file_response.<span class="bu">id</span>  </span>
-<span id="cb8-2"><a href="#cb8-2"></a></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="bu">print</span>(file_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>file_id <span class="op">=</span> file_response.<span class="bu">id</span>  </span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="bu">print</span>(file_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li class="fragment">file-4la1LvfQKJMgGxsKobJQBWkH</li>
@@ -632,13 +650,13 @@ if message.content:
 <li class="fragment">A Message contains the user’s text, and optionally, any files that the user uploads (no images).</li>
 </ul>
 <div class="fragment">
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>message <span class="op">=</span> client.beta.threads.messages.create(</span>
-<span id="cb9-2"><a href="#cb9-2"></a>    thread_id<span class="op">=</span>thread.<span class="bu">id</span>,</span>
-<span id="cb9-3"><a href="#cb9-3"></a>    role<span class="op">=</span><span class="st">'user'</span>,</span>
-<span id="cb9-4"><a href="#cb9-4"></a>    content<span class="op">=</span><span class="st">"Create a data visualization based on the relationship of the variables Miles_per_Gallon and Horsepower in this file. Interpret the findings of the plot you have created"</span>,</span>
-<span id="cb9-5"><a href="#cb9-5"></a>    file_ids<span class="op">=</span>[file_id]</span>
-<span id="cb9-6"><a href="#cb9-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>message <span class="op">=</span> client.beta.threads.messages.create(</span>
+<span id="cb10-2"><a href="#cb10-2"></a>    thread_id<span class="op">=</span>thread.<span class="bu">id</span>,</span>
+<span id="cb10-3"><a href="#cb10-3"></a>    role<span class="op">=</span><span class="st">'user'</span>,</span>
+<span id="cb10-4"><a href="#cb10-4"></a>    content<span class="op">=</span><span class="st">"Create a data visualization based on the relationship of the variables Miles_per_Gallon and Horsepower in this file. Interpret the findings of the plot you have created"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5"></a>    file_ids<span class="op">=</span>[file_id]</span>
+<span id="cb10-6"><a href="#cb10-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section></section>
@@ -649,11 +667,11 @@ if message.content:
 <li class="fragment">When you have all the context you need from your user in the Thread, you can run the Thread with an Assistant of your choice.</li>
 </ul>
 <div class="fragment">
-<div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>run <span class="op">=</span> client.beta.threads.runs.create(</span>
-<span id="cb10-2"><a href="#cb10-2"></a>  thread_id<span class="op">=</span>thread.<span class="bu">id</span>,</span>
-<span id="cb10-3"><a href="#cb10-3"></a>  assistant_id<span class="op">=</span>assistant.<span class="bu">id</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>run <span class="op">=</span> client.beta.threads.runs.create(</span>
+<span id="cb11-2"><a href="#cb11-2"></a>  thread_id<span class="op">=</span>thread.<span class="bu">id</span>,</span>
+<span id="cb11-3"><a href="#cb11-3"></a>  assistant_id<span class="op">=</span>assistant.<span class="bu">id</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -715,11 +733,12 @@ if message.content:
 <li class="fragment"><p>You need to wait until the status=‘completed’ before you can retrieve the Messages added by the Assistant.</p></li>
 <li class="fragment"><p>Let’s check the status</p></li>
 </ul>
-<div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>run.status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>run.status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li class="fragment">‘queued’</li>
+<li class="fragment"><p>‘queued’</p></li>
+<li class="fragment"><p>This means we have to wait until the status is ‘completed’</p></li>
 </ul>
 </section>
 <section id="retrieve-current-run" class="slide level2">
@@ -727,15 +746,15 @@ if message.content:
 <ul>
 <li class="fragment">Again, check the current status with <code>retrieve</code></li>
 </ul>
-<div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>run <span class="op">=</span> client.beta.threads.runs.retrieve(</span>
-<span id="cb12-2"><a href="#cb12-2"></a>  thread_id<span class="op">=</span>thread.<span class="bu">id</span>,</span>
-<span id="cb12-3"><a href="#cb12-3"></a>  run_id<span class="op">=</span>run.<span class="bu">id</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>run <span class="op">=</span> client.beta.threads.runs.retrieve(</span>
+<span id="cb13-2"><a href="#cb13-2"></a>  thread_id<span class="op">=</span>thread.<span class="bu">id</span>,</span>
+<span id="cb13-3"><a href="#cb13-3"></a>  run_id<span class="op">=</span>run.<span class="bu">id</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="bu">print</span>(run.status)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="bu">print</span>(run.status)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li class="fragment">‘completed’</li>
@@ -747,20 +766,20 @@ if message.content:
 <h1>Retrieve Messages</h1>
 <p>Once the Run completes, you can retrieve the Messages added by the Assistant to the Thread.</p>
 <div class="fragment">
-<div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>messages_cursor <span class="op">=</span> client.beta.threads.messages.<span class="bu">list</span>(</span>
-<span id="cb14-2"><a href="#cb14-2"></a>  thread_id<span class="op">=</span>thread.<span class="bu">id</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>messages_cursor <span class="op">=</span> client.beta.threads.messages.<span class="bu">list</span>(</span>
+<span id="cb15-2"><a href="#cb15-2"></a>  thread_id<span class="op">=</span>thread.<span class="bu">id</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section id="inspect-all-messages" class="slide level2 smaller">
 <h2>Inspect all messages</h2>
-<div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="bu">print</span>(messages_cursor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="bu">print</span>(messages_cursor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>SyncCursorPage[ThreadMessage](data<span class="op">=</span>[ThreadMessage(<span class="bu">id</span><span class="op">=</span><span class="st">'msg_mMdjZ6raDxzbYr065ojq9jav'</span>, assistant_id<span class="op">=</span><span class="st">'asst_oLnJ4yhowVZrqUecc8OCtNaL'</span>, content<span class="op">=</span>[MessageContentImageFile(image_file<span class="op">=</span>ImageFile(file_id<span class="op">=</span><span class="st">'file-98KwkltWZr4n0kZxMUdqIzTM'</span>), <span class="bu">type</span><span class="op">=</span><span class="st">'image_file'</span>), MessageContentText(text<span class="op">=</span>Text(annotations<span class="op">=</span>[], value<span class="op">=</span><span class="st">"The scatter plot above displays the relationship between 'Horsepower' and 'Miles per Gallon' (MPG). From the plot, we can observe the following:</span><span class="ch">\n\n</span><span class="st">- There is a general negative correlation between Horsepower and Miles per Gallon. This means that as Horsepower increases, MPG tends to decrease.</span><span class="ch">\n</span><span class="st">- This relationship can be attributed to the fact that cars with higher horsepower values are usually more powerful and may require more fuel to sustain that power, resulting in lower fuel efficiency.</span><span class="ch">\n\n</span><span class="st">However, it is important to note that other factors not depicted in this plot could also influence the MPG, such as the weight of the car, the type of engine, and aerodynamic design. For more comprehensive insights, it would be beneficial to consider these variables in future analyses.</span><span class="ch">\n\n</span><span class="st">Would you like to perform any further analysis on this dataset or have any other questions?"</span>), <span class="bu">type</span><span class="op">=</span><span class="st">'text'</span>)], created_at<span class="op">=</span><span class="dv">1699521035</span>, file_ids<span class="op">=</span>[], metadata<span class="op">=</span>{}, <span class="bu">object</span><span class="op">=</span><span class="st">'thread.message'</span>, role<span class="op">=</span><span class="st">'assistant'</span>, run_id<span class="op">=</span><span class="st">'run_kctoJoy5qZcNukQK5dKadfMD'</span>, thread_id<span class="op">=</span><span class="st">'thread_iB6WpSbp6r6j9ayrdHIyyafC'</span>), ThreadMessage(<span class="bu">id</span><span class="op">=</span><span class="st">'msg_vaS3zpOTi6sDzeXwZWyQjEvT'</span>, assistant_id<span class="op">=</span><span class="st">'asst_oLnJ4yhowVZrqUecc8OCtNaL'</span>, content<span class="op">=</span>[MessageContentText(text<span class="op">=</span>Text(annotations<span class="op">=</span>[], value<span class="op">=</span><span class="st">"The data has been successfully loaded and it contains the following columns: 'Name', 'Miles_per_Gallon', 'Cylinders', 'Displacement', 'Horsepower', 'Weight_in_lbs', 'Acceleration', 'Year', and 'Origin'.</span><span class="ch">\n\n</span><span class="st">Next, I will create a scatter plot to visualize the relationship between 'Miles_per_Gallon' (MPG) and 'Horsepower'. The scatter plot will help us understand if there's a trend or correlation between these two variables. Let's create the plot now."</span>), <span class="bu">type</span><span class="op">=</span><span class="st">'text'</span>)], created_at<span class="op">=</span><span class="dv">1699521019</span>, file_ids<span class="op">=</span>[], metadata<span class="op">=</span>{}, <span class="bu">object</span><span class="op">=</span><span class="st">'thread.message'</span>, role<span class="op">=</span><span class="st">'assistant'</span>, run_id<span class="op">=</span><span class="st">'run_kctoJoy5qZcNukQK5dKadfMD'</span>, thread_id<span class="op">=</span><span class="st">'thread_iB6WpSbp6r6j9ayrdHIyyafC'</span>), ThreadMessage(<span class="bu">id</span><span class="op">=</span><span class="st">'msg_jFgAaY1O0aTLw1bI7eyUuqy0'</span>, assistant_id<span class="op">=</span><span class="st">'asst_oLnJ4yhowVZrqUecc8OCtNaL'</span>, content<span class="op">=</span>[MessageContentText(text<span class="op">=</span>Text(annotations<span class="op">=</span>[], value<span class="op">=</span><span class="st">"First, let's load the .csv file and preview its contents to understand the structure of the data. Then we can analyze the variables Miles_per_Gallon and Horsepower and create a data visualization to interpret their relationship. I will start by loading the data."</span>), <span class="bu">type</span><span class="op">=</span><span class="st">'text'</span>)], created_at<span class="op">=</span><span class="dv">1699521009</span>, file_ids<span class="op">=</span>[], metadata<span class="op">=</span>{}, <span class="bu">object</span><span class="op">=</span><span class="st">'thread.message'</span>, role<span class="op">=</span><span class="st">'assistant'</span>, run_id<span class="op">=</span><span class="st">'run_kctoJoy5qZcNukQK5dKadfMD'</span>, thread_id<span class="op">=</span><span class="st">'thread_iB6WpSbp6r6j9ayrdHIyyafC'</span>), ThreadMessage(<span class="bu">id</span><span class="op">=</span><span class="st">'msg_0WMtoLxPzCXB14wNTIicUkqO'</span>, assistant_id<span class="op">=</span><span class="va">None</span>, content<span class="op">=</span>[MessageContentText(text<span class="op">=</span>Text(annotations<span class="op">=</span>[], value<span class="op">=</span><span class="st">'Create a data visualization based on the relationship of the variables Miles_per_Gallon and Horsepower in this file. Interpret the findings of the plot you have created'</span>), <span class="bu">type</span><span class="op">=</span><span class="st">'text'</span>)], created_at<span class="op">=</span><span class="dv">1699521002</span>, file_ids<span class="op">=</span>[<span class="st">'file-4la1LvfQKJMgGxsKobJQBWkH'</span>], metadata<span class="op">=</span>{}, <span class="bu">object</span><span class="op">=</span><span class="st">'thread.message'</span>, role<span class="op">=</span><span class="st">'user'</span>, run_id<span class="op">=</span><span class="va">None</span>, thread_id<span class="op">=</span><span class="st">'thread_iB6WpSbp6r6j9ayrdHIyyafC'</span>)], <span class="bu">object</span><span class="op">=</span><span class="st">'list'</span>, first_id<span class="op">=</span><span class="st">'msg_mMdjZ6raDxzbYr065ojq9jav'</span>, last_id<span class="op">=</span><span class="st">'msg_0WMtoLxPzCXB14wNTIicUkqO'</span>, has_more<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>SyncCursorPage[ThreadMessage](data<span class="op">=</span>[ThreadMessage(<span class="bu">id</span><span class="op">=</span><span class="st">'msg_mMdjZ6raDxzbYr065ojq9jav'</span>, assistant_id<span class="op">=</span><span class="st">'asst_oLnJ4yhowVZrqUecc8OCtNaL'</span>, content<span class="op">=</span>[MessageContentImageFile(image_file<span class="op">=</span>ImageFile(file_id<span class="op">=</span><span class="st">'file-98KwkltWZr4n0kZxMUdqIzTM'</span>), <span class="bu">type</span><span class="op">=</span><span class="st">'image_file'</span>), MessageContentText(text<span class="op">=</span>Text(annotations<span class="op">=</span>[], value<span class="op">=</span><span class="st">"The scatter plot above displays the relationship between 'Horsepower' and 'Miles per Gallon' (MPG). From the plot, we can observe the following:</span><span class="ch">\n\n</span><span class="st">- There is a general negative correlation between Horsepower and Miles per Gallon. This means that as Horsepower increases, MPG tends to decrease.</span><span class="ch">\n</span><span class="st">- This relationship can be attributed to the fact that cars with higher horsepower values are usually more powerful and may require more fuel to sustain that power, resulting in lower fuel efficiency.</span><span class="ch">\n\n</span><span class="st">However, it is important to note that other factors not depicted in this plot could also influence the MPG, such as the weight of the car, the type of engine, and aerodynamic design. For more comprehensive insights, it would be beneficial to consider these variables in future analyses.</span><span class="ch">\n\n</span><span class="st">Would you like to perform any further analysis on this dataset or have any other questions?"</span>), <span class="bu">type</span><span class="op">=</span><span class="st">'text'</span>)], created_at<span class="op">=</span><span class="dv">1699521035</span>, file_ids<span class="op">=</span>[], metadata<span class="op">=</span>{}, <span class="bu">object</span><span class="op">=</span><span class="st">'thread.message'</span>, role<span class="op">=</span><span class="st">'assistant'</span>, run_id<span class="op">=</span><span class="st">'run_kctoJoy5qZcNukQK5dKadfMD'</span>, thread_id<span class="op">=</span><span class="st">'thread_iB6WpSbp6r6j9ayrdHIyyafC'</span>), ThreadMessage(<span class="bu">id</span><span class="op">=</span><span class="st">'msg_vaS3zpOTi6sDzeXwZWyQjEvT'</span>, assistant_id<span class="op">=</span><span class="st">'asst_oLnJ4yhowVZrqUecc8OCtNaL'</span>, content<span class="op">=</span>[MessageContentText(text<span class="op">=</span>Text(annotations<span class="op">=</span>[], value<span class="op">=</span><span class="st">"The data has been successfully loaded and it contains the following columns: 'Name', 'Miles_per_Gallon', 'Cylinders', 'Displacement', 'Horsepower', 'Weight_in_lbs', 'Acceleration', 'Year', and 'Origin'.</span><span class="ch">\n\n</span><span class="st">Next, I will create a scatter plot to visualize the relationship between 'Miles_per_Gallon' (MPG) and 'Horsepower'. The scatter plot will help us understand if there's a trend or correlation between these two variables. Let's create the plot now."</span>), <span class="bu">type</span><span class="op">=</span><span class="st">'text'</span>)], created_at<span class="op">=</span><span class="dv">1699521019</span>, file_ids<span class="op">=</span>[], metadata<span class="op">=</span>{}, <span class="bu">object</span><span class="op">=</span><span class="st">'thread.message'</span>, role<span class="op">=</span><span class="st">'assistant'</span>, run_id<span class="op">=</span><span class="st">'run_kctoJoy5qZcNukQK5dKadfMD'</span>, thread_id<span class="op">=</span><span class="st">'thread_iB6WpSbp6r6j9ayrdHIyyafC'</span>), ThreadMessage(<span class="bu">id</span><span class="op">=</span><span class="st">'msg_jFgAaY1O0aTLw1bI7eyUuqy0'</span>, assistant_id<span class="op">=</span><span class="st">'asst_oLnJ4yhowVZrqUecc8OCtNaL'</span>, content<span class="op">=</span>[MessageContentText(text<span class="op">=</span>Text(annotations<span class="op">=</span>[], value<span class="op">=</span><span class="st">"First, let's load the .csv file and preview its contents to understand the structure of the data. Then we can analyze the variables Miles_per_Gallon and Horsepower and create a data visualization to interpret their relationship. I will start by loading the data."</span>), <span class="bu">type</span><span class="op">=</span><span class="st">'text'</span>)], created_at<span class="op">=</span><span class="dv">1699521009</span>, file_ids<span class="op">=</span>[], metadata<span class="op">=</span>{}, <span class="bu">object</span><span class="op">=</span><span class="st">'thread.message'</span>, role<span class="op">=</span><span class="st">'assistant'</span>, run_id<span class="op">=</span><span class="st">'run_kctoJoy5qZcNukQK5dKadfMD'</span>, thread_id<span class="op">=</span><span class="st">'thread_iB6WpSbp6r6j9ayrdHIyyafC'</span>), ThreadMessage(<span class="bu">id</span><span class="op">=</span><span class="st">'msg_0WMtoLxPzCXB14wNTIicUkqO'</span>, assistant_id<span class="op">=</span><span class="va">None</span>, content<span class="op">=</span>[MessageContentText(text<span class="op">=</span>Text(annotations<span class="op">=</span>[], value<span class="op">=</span><span class="st">'Create a data visualization based on the relationship of the variables Miles_per_Gallon and Horsepower in this file. Interpret the findings of the plot you have created'</span>), <span class="bu">type</span><span class="op">=</span><span class="st">'text'</span>)], created_at<span class="op">=</span><span class="dv">1699521002</span>, file_ids<span class="op">=</span>[<span class="st">'file-4la1LvfQKJMgGxsKobJQBWkH'</span>], metadata<span class="op">=</span>{}, <span class="bu">object</span><span class="op">=</span><span class="st">'thread.message'</span>, role<span class="op">=</span><span class="st">'user'</span>, run_id<span class="op">=</span><span class="va">None</span>, thread_id<span class="op">=</span><span class="st">'thread_iB6WpSbp6r6j9ayrdHIyyafC'</span>)], <span class="bu">object</span><span class="op">=</span><span class="st">'list'</span>, first_id<span class="op">=</span><span class="st">'msg_mMdjZ6raDxzbYr065ojq9jav'</span>, last_id<span class="op">=</span><span class="st">'msg_0WMtoLxPzCXB14wNTIicUkqO'</span>, has_more<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
@@ -770,28 +789,28 @@ if message.content:
 </section>
 <section id="display-response-of-assistant" class="slide level2">
 <h2>Display response of assistant</h2>
-<div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># Iterate over the cursor to get all messages</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>messages <span class="op">=</span> [message <span class="cf">for</span> message <span class="kw">in</span> messages_cursor]</span>
-<span id="cb17-3"><a href="#cb17-3"></a></span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="co"># The assistant's response should be the first message in the thread</span></span>
-<span id="cb17-5"><a href="#cb17-5"></a>assistant_response <span class="op">=</span> messages[<span class="dv">0</span>].content <span class="cf">if</span> messages <span class="cf">else</span> <span class="st">"No response yet."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Iterate over the cursor to get all messages</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>messages <span class="op">=</span> [message <span class="cf">for</span> message <span class="kw">in</span> messages_cursor]</span>
+<span id="cb18-3"><a href="#cb18-3"></a></span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="co"># The assistant's response should be the first message in the thread</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a>assistant_response <span class="op">=</span> messages[<span class="dv">0</span>].content <span class="cf">if</span> messages <span class="cf">else</span> <span class="st">"No response yet."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="output" class="slide level2 smaller">
 <h2>Output</h2>
-<div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="bu">print</span>(assistant_response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="bu">print</span>(assistant_response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a></span>
-<span id="cb19-2"><a href="#cb19-2"></a>[MessageContentImageFile(image_file<span class="op">=</span>ImageFile(file_id<span class="op">=</span><span class="st">'file-98KwkltWZr4n0kZxMUdqIzTM'</span>), <span class="bu">type</span><span class="op">=</span><span class="st">'image_file'</span>), MessageContentText(text<span class="op">=</span>Text(annotations<span class="op">=</span>[], value<span class="op">=</span><span class="st">"The scatter plot above displays the relationship between 'Horsepower' and 'Miles per Gallon' (MPG). From the plot, we can observe the following:</span><span class="ch">\n\n</span><span class="st">- There is a general negative correlation between Horsepower and Miles per Gallon. This means that as Horsepower increases, MPG tends to decrease.</span><span class="ch">\n</span><span class="st">- This relationship can be attributed to the fact that cars with higher horsepower values are usually more powerful and may require more fuel to sustain that power, resulting in lower fuel efficiency.</span><span class="ch">\n\n</span><span class="st">However, it is important to note that other factors not depicted in this plot could also influence the MPG, such as the weight of the car, the type of engine, and aerodynamic design. For more comprehensive insights, it would be beneficial to consider these variables in future analyses.</span><span class="ch">\n\n</span><span class="st">Would you like to perform any further analysis on this dataset or have any other questions?"</span>), <span class="bu">type</span><span class="op">=</span><span class="st">'text'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a></span>
+<span id="cb20-2"><a href="#cb20-2"></a>[MessageContentImageFile(image_file<span class="op">=</span>ImageFile(file_id<span class="op">=</span><span class="st">'file-98KwkltWZr4n0kZxMUdqIzTM'</span>), <span class="bu">type</span><span class="op">=</span><span class="st">'image_file'</span>), MessageContentText(text<span class="op">=</span>Text(annotations<span class="op">=</span>[], value<span class="op">=</span><span class="st">"The scatter plot above displays the relationship between 'Horsepower' and 'Miles per Gallon' (MPG). From the plot, we can observe the following:</span><span class="ch">\n\n</span><span class="st">- There is a general negative correlation between Horsepower and Miles per Gallon. This means that as Horsepower increases, MPG tends to decrease.</span><span class="ch">\n</span><span class="st">- This relationship can be attributed to the fact that cars with higher horsepower values are usually more powerful and may require more fuel to sustain that power, resulting in lower fuel efficiency.</span><span class="ch">\n\n</span><span class="st">However, it is important to note that other factors not depicted in this plot could also influence the MPG, such as the weight of the car, the type of engine, and aerodynamic design. For more comprehensive insights, it would be beneficial to consider these variables in future analyses.</span><span class="ch">\n\n</span><span class="st">Would you like to perform any further analysis on this dataset or have any other questions?"</span>), <span class="bu">type</span><span class="op">=</span><span class="st">'text'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="extract-only-text-response" class="slide level2 smaller">
 <h2>Extract only text response</h2>
-<div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>assistant_response[<span class="dv">1</span>].text.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>assistant_response[<span class="dv">1</span>].text.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <ul>
@@ -816,18 +835,18 @@ if message.content:
 <ul>
 <li class="fragment">The file content can then be downloaded by passing the file ID to the Files API</li>
 </ul>
-<div class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>response_file_id <span class="op">=</span> assistant_response[<span class="dv">0</span>].image_file.file_id</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>response_file_id <span class="op">=</span> assistant_response[<span class="dv">0</span>].image_file.file_id</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="bu">print</span>(response_file_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="bu">print</span>(response_file_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li class="fragment">file-98KwkltWZr4n0kZxMUdqIzTM</li>
 </ul>
-<div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>content <span class="op">=</span> client.files.retrieve_content(response_file_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>content <span class="op">=</span> client.files.retrieve_content(response_file_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -836,7 +855,7 @@ if message.content:
 <p>tbd</p>
 <!--
 
-::: {.cell execution_count=26}
+::: {.cell execution_count=27}
 ``` {.python .cell-code}
 filename = "output_image.png"  # Use the correct file extension
 
@@ -857,7 +876,7 @@ print(f"Image saved as {filename}.")
 :::
 
 
-::: {.cell execution_count=27}
+::: {.cell execution_count=28}
 ``` {.python .cell-code}
 filename = "output_image.png"  # or .jpg, .jpeg, .bmp, etc. depending on the image format
 
@@ -870,7 +889,7 @@ print(f"Image saved as {filename}.")
 :::
 
 
-::: {.cell execution_count=28}
+::: {.cell execution_count=29}
 ``` {.python .cell-code}
 filename = "output_image.png"  # Adjust the filename and extension as necessary
 
@@ -910,14 +929,14 @@ except Exception as e:
 <ul>
 <li class="fragment">By listing the steps of a Run that called Code Interpreter, you can inspect the code input and outputs logs of Code Interpreter:</li>
 </ul>
-<div class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>run_steps <span class="op">=</span> client.beta.threads.runs.steps.<span class="bu">list</span>(</span>
-<span id="cb24-2"><a href="#cb24-2"></a>  thread_id<span class="op">=</span>thread.<span class="bu">id</span>,</span>
-<span id="cb24-3"><a href="#cb24-3"></a>  run_id<span class="op">=</span>run.<span class="bu">id</span></span>
-<span id="cb24-4"><a href="#cb24-4"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <div class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="bu">print</span>(run_steps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>run_steps <span class="op">=</span> client.beta.threads.runs.steps.<span class="bu">list</span>(</span>
+<span id="cb25-2"><a href="#cb25-2"></a>  thread_id<span class="op">=</span>thread.<span class="bu">id</span>,</span>
+<span id="cb25-3"><a href="#cb25-3"></a>  run_id<span class="op">=</span>run.<span class="bu">id</span></span>
+<span id="cb25-4"><a href="#cb25-4"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="bu">print</span>(run_steps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li class="fragment">SyncCursorPage<a href="data=[RunStep(id='step_XIu5UkRQ93lq9DB4rRTuhT7X', assistant_id='asst_oLnJ4yhowVZrqUecc8OCtNaL', cancelled_at=None, completed_at=1699521039, created_at=1699521035, expired_at=None, failed_at=None, last_error=None, metadata=None, object='thread.run.step', run_id='run_kctoJoy5qZcNukQK5dKadfMD', status='completed', step_details=MessageCreationStepDetails(message_creation=MessageCreation(message_id='msg_mMdjZ6raDxzbYr065ojq9jav'), type='message_creation'), thread_id='thread_iB6WpSbp6r6j9ayrdHIyyafC', type='message_creation', expires_at=None), RunStep(id='step_i6S6JzKby75IUuLw8vr5SJv4', assistant_id='asst_oLnJ4yhowVZrqUecc8OCtNaL', cancelled_at=None, completed_at=1699521035, created_at=1699521022, expired_at=None, failed_at=None, last_error=None, metadata=None, object='thread.run.step', run_id='run_kctoJoy5qZcNukQK5dKadfMD', status='completed', step_details=ToolCallsStepDetails(tool_calls=[CodeToolCall(id='call_Bmx6gcjEo49QCe0Hq00VsCBg', code_interpreter=CodeInterpreter(input='import matplotlib.pyplot as plt\nimport seaborn as sns\n\n# Set plot style\nsns.set_style(&quot;whitegrid&quot;)\n\n# Create a scatter plot of Miles_per_Gallon vs Horsepower\nplt.figure(figsize=(10, 6))\nsns.scatterplot(x='Horsepower', y='Miles_per_Gallon', data=data)\n\n# Adding titles and labels\nplt.title('Relationship between Horsepower and Miles per Gallon')\nplt.xlabel('Horsepower')\nplt.ylabel('Miles per Gallon')\n\n# Show the plot\nplt.show()', outputs=[CodeInterpreterOutputImage(image=CodeInterpreterOutputImageImage(file_id='file-98KwkltWZr4n0kZxMUdqIzTM'), type='image')]), type='code_interpreter')], type='tool_calls'), thread_id='thread_iB6WpSbp6r6j9ayrdHIyyafC', type='tool_calls', expires_at=None), RunStep(id='step_gkmkAaywE4v0e9ZqL0fcz0cJ', assistant_id='asst_oLnJ4yhowVZrqUecc8OCtNaL', cancelled_at=None, completed_at=1699521022, created_at=1699521019, expired_at=None, failed_at=None, last_error=None, metadata=None, object='thread.run.step', run_id='run_kctoJoy5qZcNukQK5dKadfMD', status='completed', step_details=MessageCreationStepDetails(message_creation=MessageCreation(message_id='msg_vaS3zpOTi6sDzeXwZWyQjEvT'), type='message_creation'), thread_id='thread_iB6WpSbp6r6j9ayrdHIyyafC', type='message_creation', expires_at=None), RunStep(id='step_JvEkljwuBufXi2FeLeJvd6RC', assistant_id='asst_oLnJ4yhowVZrqUecc8OCtNaL', cancelled_at=None, completed_at=1699521019, created_at=1699521011, expired_at=None, failed_at=None, last_error=None, metadata=None, object='thread.run.step', run_id='run_kctoJoy5qZcNukQK5dKadfMD', status='completed', step_details=ToolCallsStepDetails(tool_calls=[CodeToolCall(id='call_4GcqG424pOEYgKMJlcq1w5o0', code_interpreter=CodeInterpreter(input=&quot;import pandas as pd\r\n\r\n# Load the data\r\nfile_path = '/mnt/data/file-4la1LvfQKJMgGxsKobJQBWkH'\r\ndata = pd.read_csv(file_path)\r\n\r\n# Display the first few rows of the dataframe\r\ndata.head()&quot;, outputs=[CodeInterpreterOutputLogs(logs=' Name Miles_per_Gallon Cylinders Displacement \\n0 chevrolet chevelle malibu 18.0 8 307.0 \n1 buick skylark 320 15.0 8 350.0 \n2 plymouth satellite 18.0 8 318.0 \n3 amc rebel sst 16.0 8 304.0 \n4 ford torino 17.0 8 302.0 \n\n Horsepower Weight_in_lbs Acceleration Year Origin \n0 130.0 3504 12.0 1970-01-01 USA \n1 165.0 3693 11.5 1970-01-01 USA \n2 150.0 3436 11.0 1970-01-01 USA \n3 150.0 3433 12.0 1970-01-01 USA \n4 140.0 3449 10.5 1970-01-01 USA ', type='logs')]), type='code_interpreter')], type='tool_calls'), thread_id='thread_iB6WpSbp6r6j9ayrdHIyyafC', type='tool_calls', expires_at=None), RunStep(id='step_uAGsRpYm1fR9rQyOXlRWt1C3', assistant_id='asst_oLnJ4yhowVZrqUecc8OCtNaL', cancelled_at=None, completed_at=1699521011, created_at=1699521009, expired_at=None, failed_at=None, last_error=None, metadata=None, object='thread.run.step', run_id='run_kctoJoy5qZcNukQK5dKadfMD', status='completed', step_details=MessageCreationStepDetails(message_creation=MessageCreation(message_id='msg_jFgAaY1O0aTLw1bI7eyUuqy0'), type='message_creation'), thread_id='thread_iB6WpSbp6r6j9ayrdHIyyafC', type='message_creation', expires_at=None)], object='list', first_id='step_XIu5UkRQ93lq9DB4rRTuhT7X', last_id='step_uAGsRpYm1fR9rQyOXlRWt1C3', has_more=False">RunStep</a></li>
