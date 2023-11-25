@@ -56,6 +56,23 @@ client = OpenAI()
 
 # Create Assistant
 
+## Option 1: Use the Playground
+
+- You can use [OpenAI's playground](https://platform.openai.com/playground?mode=assistant) to create your Assistant in a user interface.
+
+- Get the ID of your Assistant (in the Playground below the name of the Assistant) 
+
+. . .
+
+```{python}
+OPENAI_ASSISTANT = 'asst_oLnJ4yhowVZrqUecc8OCtNaL'
+
+assistant = client.beta.assistants.retrieve(OPENAI_ASSISTANT)
+
+```
+
+## Option 2: Use the the Python API 
+
 ```{python}
 
 assistant = client.beta.assistants.create(
@@ -66,6 +83,8 @@ assistant = client.beta.assistants.create(
 )
 
 ```
+
+
 
 
 # Create Thread
@@ -298,6 +317,8 @@ run.status
 
 - 'queued'
 
+- This means we have to wait until the status is 'completed'
+
 ## Retrieve current Run
 
 - Again, check the current status with `retrieve`
@@ -413,10 +434,10 @@ content = client.files.retrieve_content(response_file_id)
 ```
 
 
+
 ## Work in progress 😊
 
 tbd
-
 
 <!--
 
