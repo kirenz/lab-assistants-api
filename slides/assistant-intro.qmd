@@ -102,7 +102,7 @@ assistant = client.beta.assistants.retrieve(OPENAI_ASSISTANT)
 
 ```
 
-## Option 2: Use the the Python API {.smaller}
+## Option 2: Use the the Python API 
 
 
 ```{python}
