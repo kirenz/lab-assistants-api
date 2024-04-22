@@ -1,5 +1,110 @@
 [
   {
+    "objectID": "assignments.html",
+    "href": "assignments.html",
+    "title": "Assignments",
+    "section": "",
+    "text": "tbd"
+  },
+  {
+    "objectID": "slides/assistant-intro.html#what-is-an-assistant",
+    "href": "slides/assistant-intro.html#what-is-an-assistant",
+    "title": "Create an Assistant",
+    "section": "What is an Assistant?",
+    "text": "What is an Assistant?\n\nCan be configured to respond to users’ messages using several parameters like:\n\nInstructions: how the Assistant and model should behave or respond\nTools: the API supports Code Interpreter and Retrieval that are built and hosted by OpenAI.\nFunctions: the API allows you to define custom function signatures"
+  },
+  {
+    "objectID": "slides/assistant-intro.html#objects",
+    "href": "slides/assistant-intro.html#objects",
+    "title": "Create an Assistant",
+    "section": "Objects",
+    "text": "Objects"
+  },
+  {
+    "objectID": "slides/assistant-intro.html#what-objects-represent",
+    "href": "slides/assistant-intro.html#what-objects-represent",
+    "title": "Create an Assistant",
+    "section": "What objects represent",
+    "text": "What objects represent\n\nThread: A conversation session between an Assistant and a user. Threads store Messages.\nMessage: A message created by an Assistant or a user. Messages can include text, images, and other files. Messages stored as a list on the Thread.\nRun: An invocation of an Assistant on a Thread. The Assistant uses it’s configuration and the Thread’s Messages to perform tasks by calling models and tools. As part of a Run, the Assistant appends Messages to the Thread.\nRun Step: A detailed list of steps the Assistant took as part of a Run. An Assistant can call tools or create Messages during it’s run. Examining Run Steps allows you to introspect how the Assistant is getting to it’s final results."
+  },
+  {
+    "objectID": "slides/assistant-intro.html#demo",
+    "href": "slides/assistant-intro.html#demo",
+    "title": "Create an Assistant",
+    "section": "Demo",
+    "text": "Demo"
+  },
+  {
+    "objectID": "slides/assistant-intro.html#option-1-use-the-playground",
+    "href": "slides/assistant-intro.html#option-1-use-the-playground",
+    "title": "Create an Assistant",
+    "section": "Option 1: Use the Playground",
+    "text": "Option 1: Use the Playground\n\nYou can use OpenAI’s playground to create your Assistant in a user interface.\nGet the ID of your Assistant (in the Playground below the name of the Assistant)\n\n\n\nOPENAI_ASSISTANT = 'asst_7rBZjKivhDiUouokmEkW2Lal'\n\nassistant = client.beta.assistants.retrieve(OPENAI_ASSISTANT)"
+  },
+  {
+    "objectID": "slides/assistant-intro.html#option-2-use-the-the-python-api",
+    "href": "slides/assistant-intro.html#option-2-use-the-the-python-api",
+    "title": "Create an Assistant",
+    "section": "Option 2: Use the the Python API",
+    "text": "Option 2: Use the the Python API\n\nassistant = client.beta.assistants.create(\n    name=\"Math Tutor\",\n    instructions=\"You are a personal Math tutor. Write and run code to answer math questions.\",\n    tools=[{\"type\": \"code_interpreter\"}],\n    model=\"gpt-4-1106-preview\"\n)"
+  },
+  {
+    "objectID": "slides/assistant-intro.html#create-message",
+    "href": "slides/assistant-intro.html#create-message",
+    "title": "Create an Assistant",
+    "section": "Create message",
+    "text": "Create message\n\nA Message contains the user’s text, and optionally, any files that the user uploads (no images).\n\n\n\nmessage = client.beta.threads.messages.create(\n    thread_id=thread.id,\n    role=\"user\",\n    content=\"I need to solve the equation `3x + 11 = 14`. Can you help me?\"\n)"
+  },
+  {
+    "objectID": "slides/assistant-intro.html#inspect-message",
+    "href": "slides/assistant-intro.html#inspect-message",
+    "title": "Create an Assistant",
+    "section": "Inspect message",
+    "text": "Inspect message\n\nmessage\n\nThreadMessage(id='msg_9x1SPRtQLbWqXMVNIXkBZ0tF', assistant_id=None, content=[MessageContentText(text=Text(annotations=[], value='I need to solve the equation `3x + 11 = 14`. Can you help me?'), type='text')], created_at=1699425718, file_ids=[], metadata={}, object='thread.message', role='user', run_id=None, thread_id='thread_5uZgyTMf0t7Im9TPxvAVDmUD')"
+  },
+  {
+    "objectID": "slides/assistant-intro.html#display-user-message",
+    "href": "slides/assistant-intro.html#display-user-message",
+    "title": "Create an Assistant",
+    "section": "Display user message",
+    "text": "Display user message\n\nShow the content of the message\n\n\n\nmessage_content = message.content[0].text\nmessage_content.value\n\n\n‘I need to solve the equation 3x + 11 = 14. Can you help me?’"
+  },
+  {
+    "objectID": "slides/assistant-intro.html#create-run",
+    "href": "slides/assistant-intro.html#create-run",
+    "title": "Create an Assistant",
+    "section": "Create Run",
+    "text": "Create Run\n\nrun = client.beta.threads.runs.create(\n  thread_id=thread.id,\n  assistant_id=assistant.id,\n  instructions=\"Please address the user as Jane Doe. The user has a premium account.\"\n)"
+  },
+  {
+    "objectID": "slides/assistant-intro.html#retrieve-run",
+    "href": "slides/assistant-intro.html#retrieve-run",
+    "title": "Create an Assistant",
+    "section": "Retrieve Run",
+    "text": "Retrieve Run\n\nrun = client.beta.threads.runs.retrieve(\n  thread_id=thread.id,\n  run_id=run.id\n)\n\n\n\nprint(run)\n\n\n\nRun(id='run_EF9AwlwFnOQJ3wPRCIdNGVaS', assistant_id='asst_YhNjYRQT38e4I5N8WsZ7ihz1', cancelled_at=None, completed_at=None, created_at=1699425952, expires_at=1699426552, failed_at=None, file_ids=[], instructions='Please address the user as Jane Doe. The user has a premium account.', last_error=None, metadata={}, model='gpt-4-1106-preview', object='thread.run', required_action=None, started_at=None, status='queued', thread_id='thread_5uZgyTMf0t7Im9TPxvAVDmUD', tools=[ToolAssistantToolsCode(type='code_interpreter')])"
+  },
+  {
+    "objectID": "slides/assistant-intro.html#retrieve-messages",
+    "href": "slides/assistant-intro.html#retrieve-messages",
+    "title": "Create an Assistant",
+    "section": "Retrieve Messages",
+    "text": "Retrieve Messages\nOnce the Run completes, you can retrieve the Messages added by the Assistant to the Thread.\n\nmessages_cursor = client.beta.threads.messages.list(\n  thread_id=thread.id\n)\n\n\n\nmessages_cursor\n\n\n\nSyncCursorPage[ThreadMessage](data=[ThreadMessage(id='msg_aFjIRT2SoI0i3zcAVlFsx3Yn', assistant_id='asst_YhNjYRQT38e4I5N8WsZ7ihz1', content=[MessageContentText(text=Text(annotations=[], value='The solution to the equation \\\\(3x + 11 = 14\\\\) is \\\\(x = 1\\\\).'), type='text')], created_at=1699425958, file_ids=[], metadata={}, object='thread.message', role='assistant', run_id='run_EF9AwlwFnOQJ3wPRCIdNGVaS', thread_id='thread_5uZgyTMf0t7Im9TPxvAVDmUD'), ThreadMessage(id='msg_9x1SPRtQLbWqXMVNIXkBZ0tF', assistant_id=None, content=[MessageContentText(text=Text(annotations=[], value='I need to solve the equation `3x + 11 = 14`. Can you help me?'), type='text')], created_at=1699425718, file_ids=[], metadata={}, object='thread.message', role='user', run_id=None, thread_id='thread_5uZgyTMf0t7Im9TPxvAVDmUD')], object='list', first_id='msg_aFjIRT2SoI0i3zcAVlFsx3Yn', last_id='msg_9x1SPRtQLbWqXMVNIXkBZ0tF', has_more=False)"
+  },
+  {
+    "objectID": "slides/assistant-intro.html#only-display-response-of-assistant",
+    "href": "slides/assistant-intro.html#only-display-response-of-assistant",
+    "title": "Create an Assistant",
+    "section": "Only display response of assistant",
+    "text": "Only display response of assistant\n\n# Iterate over the cursor to get all messages\nmessages = [message for message in messages_cursor]\n\n# The assistant's response should be the first message in the thread\nassistant_response = messages[0].content if messages else \"No response yet.\"\nprint(assistant_response)\n\n\n\n- [MessageContentText(text=Text(annotations=[], value='Certainly, Jane Doe. The solution to the equation \\\\(3x + 11 = 14\\\\) is \\\\(x = 1\\\\).'), type='text')]"
+  },
+  {
+    "objectID": "slides/assistant-intro.html#extract-only-text-response",
+    "href": "slides/assistant-intro.html#extract-only-text-response",
+    "title": "Create an Assistant",
+    "section": "Extract only text response",
+    "text": "Extract only text response\n\nassistant_response[0].text.value\n\n\n‘Certainly, Jane Doe. The solution to the equation \\(3x + 11 = 14\\) is \\(x = 1\\).’"
+  },
+  {
     "objectID": "code/assistant-intro.html",
     "href": "code/assistant-intro.html",
     "title": "Create an Assistant",
@@ -89,6 +194,167 @@
     "title": "Create an Assistant",
     "section": "Extract only text response",
     "text": "Extract only text response\n\nassistant_response[0].text.value"
+  },
+  {
+    "objectID": "code/assistant-files.html",
+    "href": "code/assistant-files.html",
+    "title": "Assistants API and Files",
+    "section": "",
+    "text": "We create an Assistant that can create data visualization based on a .csv file to demonstrate how to upload and download files using OpenAi’s Assistants API."
+  },
+  {
+    "objectID": "code/assistant-files.html#how-to-obbtain-the-thread-id",
+    "href": "code/assistant-files.html#how-to-obbtain-the-thread-id",
+    "title": "Assistants API and Files",
+    "section": "How to Obbtain the Thread id",
+    "text": "How to Obbtain the Thread id\n\nthread\n\n\nThread(id=‘thread_iB6WpSbp6r6j9ayrdHIyyafC’, created_at=1699520936, metadata={}, object=‘thread’)\n\n\nthread_id = thread.id\nprint(f'Thread ID: {thread_id}')\n\n\nThread ID: thread_iB6WpSbp6r6j9ayrdHIyyafC"
+  },
+  {
+    "objectID": "code/assistant-files.html#create-file",
+    "href": "code/assistant-files.html#create-file",
+    "title": "Assistants API and Files",
+    "section": "Create file",
+    "text": "Create file\n\nUsually, we could simply input the file in a UI\nHere, we have to upload it\n\n\nfile_response = client.files.create(\n  file=open(\"cars.csv\", \"rb\"),\n  purpose='assistants'\n)\n\n\nfile_id = file_response.id  \n\nprint(file_id)\n\n\nfile-4la1LvfQKJMgGxsKobJQBWkH"
+  },
+  {
+    "objectID": "code/assistant-files.html#create-message",
+    "href": "code/assistant-files.html#create-message",
+    "title": "Assistants API and Files",
+    "section": "Create message",
+    "text": "Create message\n\nA Message contains the user’s text, and optionally, any files that the user uploads (no images).\n\n\nmessage = client.beta.threads.messages.create(\n    thread_id=thread.id,\n    role='user',\n    content=\"Create a data visualization based on the relationship of the variables Miles_per_Gallon and Horsepower in this file. Interpret the findings of the plot you have created\",\n    file_ids=[file_id]\n)"
+  },
+  {
+    "objectID": "code/assistant-files.html#run-objects",
+    "href": "code/assistant-files.html#run-objects",
+    "title": "Assistants API and Files",
+    "section": "Run objects",
+    "text": "Run objects"
+  },
+  {
+    "objectID": "code/assistant-files.html#run-objects-explained",
+    "href": "code/assistant-files.html#run-objects-explained",
+    "title": "Assistants API and Files",
+    "section": "Run objects explained",
+    "text": "Run objects explained\n\n\n\nSTATUS\nDEFINITION\n\n\n\n\nqueued\nWhen Runs are first created or when you complete the required_action, they are moved to a queued status. They should almost immediately move to in_progress.\n\n\nin_progress\nWhile in_progress, the Assistant uses the model and tools to perform steps. You can view progress being made by the Run by examining the Run Steps.\n\n\ncompleted\nThe Run successfully completed! You can now view all Messages the Assistant added to the Thread, and all the steps the Run took. You can also continue the conversation by adding more user Messages to the Thread and creating another Run.\n\n\nrequires_action\nWhen using the Function calling tool, the Run will move to a required_action state once the model determines the names and arguments of the functions to be called. You must then run those functions and submit the outputs before the run proceeds. If the outputs are not provided before the expires_at timestamp passes (roughly 10 mins past creation), the run will move to an expired status.\n\n\nexpired\nThis happens when the function calling outputs were not submitted before expires_at and the run expires. Additionally, if the runs take too long to execute and go beyond the time stated in expires_at, our systems will expire the run.\n\n\ncancelling\nYou can attempt to cancel an in_progress run using the Cancel Run endpoint. Once the attempt to cancel succeeds, status of the Run moves to cancelled. Cancellation is attempted but not guaranteed.\n\n\ncancelled\nRun was successfully cancelled.\n\n\nfailed\nYou can view the reason for the failure by looking at the last_error object in the Run. The timestamp for the failure will be recorded under failed_at."
+  },
+  {
+    "objectID": "code/assistant-files.html#inspect-status-of-the-run",
+    "href": "code/assistant-files.html#inspect-status-of-the-run",
+    "title": "Assistants API and Files",
+    "section": "Inspect status of the Run",
+    "text": "Inspect status of the Run\n\nYou need to wait until the status=‘completed’ before you can retrieve the Messages added by the Assistant.\nLet’s check the status\n\n\nrun.status\n\n\n‘queued’"
+  },
+  {
+    "objectID": "code/assistant-files.html#retrieve-current-run",
+    "href": "code/assistant-files.html#retrieve-current-run",
+    "title": "Assistants API and Files",
+    "section": "Retrieve current Run",
+    "text": "Retrieve current Run\n\nAgain, check the current status with retrieve\n\n\nrun = client.beta.threads.runs.retrieve(\n  thread_id=thread.id,\n  run_id=run.id\n)\n\n\nprint(run.status)\n\n\n‘completed’"
+  },
+  {
+    "objectID": "code/assistant-files.html#inspect-all-messages",
+    "href": "code/assistant-files.html#inspect-all-messages",
+    "title": "Assistants API and Files",
+    "section": "Inspect all messages",
+    "text": "Inspect all messages\n\nprint(messages_cursor)\n\nSyncCursorPage[ThreadMessage](data=[ThreadMessage(id='msg_mMdjZ6raDxzbYr065ojq9jav', assistant_id='asst_oLnJ4yhowVZrqUecc8OCtNaL', content=[MessageContentImageFile(image_file=ImageFile(file_id='file-98KwkltWZr4n0kZxMUdqIzTM'), type='image_file'), MessageContentText(text=Text(annotations=[], value=\"The scatter plot above displays the relationship between 'Horsepower' and 'Miles per Gallon' (MPG). From the plot, we can observe the following:\\n\\n- There is a general negative correlation between Horsepower and Miles per Gallon. This means that as Horsepower increases, MPG tends to decrease.\\n- This relationship can be attributed to the fact that cars with higher horsepower values are usually more powerful and may require more fuel to sustain that power, resulting in lower fuel efficiency.\\n\\nHowever, it is important to note that other factors not depicted in this plot could also influence the MPG, such as the weight of the car, the type of engine, and aerodynamic design. For more comprehensive insights, it would be beneficial to consider these variables in future analyses.\\n\\nWould you like to perform any further analysis on this dataset or have any other questions?\"), type='text')], created_at=1699521035, file_ids=[], metadata={}, object='thread.message', role='assistant', run_id='run_kctoJoy5qZcNukQK5dKadfMD', thread_id='thread_iB6WpSbp6r6j9ayrdHIyyafC'), ThreadMessage(id='msg_vaS3zpOTi6sDzeXwZWyQjEvT', assistant_id='asst_oLnJ4yhowVZrqUecc8OCtNaL', content=[MessageContentText(text=Text(annotations=[], value=\"The data has been successfully loaded and it contains the following columns: 'Name', 'Miles_per_Gallon', 'Cylinders', 'Displacement', 'Horsepower', 'Weight_in_lbs', 'Acceleration', 'Year', and 'Origin'.\\n\\nNext, I will create a scatter plot to visualize the relationship between 'Miles_per_Gallon' (MPG) and 'Horsepower'. The scatter plot will help us understand if there's a trend or correlation between these two variables. Let's create the plot now.\"), type='text')], created_at=1699521019, file_ids=[], metadata={}, object='thread.message', role='assistant', run_id='run_kctoJoy5qZcNukQK5dKadfMD', thread_id='thread_iB6WpSbp6r6j9ayrdHIyyafC'), ThreadMessage(id='msg_jFgAaY1O0aTLw1bI7eyUuqy0', assistant_id='asst_oLnJ4yhowVZrqUecc8OCtNaL', content=[MessageContentText(text=Text(annotations=[], value=\"First, let's load the .csv file and preview its contents to understand the structure of the data. Then we can analyze the variables Miles_per_Gallon and Horsepower and create a data visualization to interpret their relationship. I will start by loading the data.\"), type='text')], created_at=1699521009, file_ids=[], metadata={}, object='thread.message', role='assistant', run_id='run_kctoJoy5qZcNukQK5dKadfMD', thread_id='thread_iB6WpSbp6r6j9ayrdHIyyafC'), ThreadMessage(id='msg_0WMtoLxPzCXB14wNTIicUkqO', assistant_id=None, content=[MessageContentText(text=Text(annotations=[], value='Create a data visualization based on the relationship of the variables Miles_per_Gallon and Horsepower in this file. Interpret the findings of the plot you have created'), type='text')], created_at=1699521002, file_ids=['file-4la1LvfQKJMgGxsKobJQBWkH'], metadata={}, object='thread.message', role='user', run_id=None, thread_id='thread_iB6WpSbp6r6j9ayrdHIyyafC')], object='list', first_id='msg_mMdjZ6raDxzbYr065ojq9jav', last_id='msg_0WMtoLxPzCXB14wNTIicUkqO', has_more=False)"
+  },
+  {
+    "objectID": "code/assistant-files.html#display-response-of-assistant",
+    "href": "code/assistant-files.html#display-response-of-assistant",
+    "title": "Assistants API and Files",
+    "section": "Display response of assistant",
+    "text": "Display response of assistant\n\n# Iterate over the cursor to get all messages\nmessages = [message for message in messages_cursor]\n\n# The assistant's response should be the first message in the thread\nassistant_response = messages[0].content if messages else \"No response yet.\""
+  },
+  {
+    "objectID": "code/assistant-files.html#output",
+    "href": "code/assistant-files.html#output",
+    "title": "Assistants API and Files",
+    "section": "Output",
+    "text": "Output\n\nprint(assistant_response)\n\n\n[MessageContentImageFile(image_file=ImageFile(file_id='file-98KwkltWZr4n0kZxMUdqIzTM'), type='image_file'), MessageContentText(text=Text(annotations=[], value=\"The scatter plot above displays the relationship between 'Horsepower' and 'Miles per Gallon' (MPG). From the plot, we can observe the following:\\n\\n- There is a general negative correlation between Horsepower and Miles per Gallon. This means that as Horsepower increases, MPG tends to decrease.\\n- This relationship can be attributed to the fact that cars with higher horsepower values are usually more powerful and may require more fuel to sustain that power, resulting in lower fuel efficiency.\\n\\nHowever, it is important to note that other factors not depicted in this plot could also influence the MPG, such as the weight of the car, the type of engine, and aerodynamic design. For more comprehensive insights, it would be beneficial to consider these variables in future analyses.\\n\\nWould you like to perform any further analysis on this dataset or have any other questions?\"), type='text')]"
+  },
+  {
+    "objectID": "code/assistant-files.html#extract-only-text-response",
+    "href": "code/assistant-files.html#extract-only-text-response",
+    "title": "Assistants API and Files",
+    "section": "Extract only text response",
+    "text": "Extract only text response\n\nassistant_response[1].text.value\n\n\n“The scatter plot above displays the relationship between ‘Horsepower’ and ‘Miles per Gallon’ (MPG). From the plot, we can observe the following:- There is a general negative correlation between Horsepower and Miles per Gallon. This means that as Horsepower increases, MPG tends to decrease.- This relationship can be attributed to the fact that cars with higher horsepower values are usually more powerful and may require more fuel to sustain that power, resulting in lower fuel efficiency., it is important to note that other factors not depicted in this plot could also influence the MPG, such as the weight of the car, the type of engine, and aerodynamic design. For more comprehensive insights, it would be beneficial to consider these variables in future analyses.you like to perform any further analysis on this dataset or have any other questions?”"
+  },
+  {
+    "objectID": "code/assistant-files.html#get-file-content",
+    "href": "code/assistant-files.html#get-file-content",
+    "title": "Assistants API and Files",
+    "section": "Get file content",
+    "text": "Get file content\n\nThe file content can then be downloaded by passing the file ID to the Files API\n\n\nresponse_file_id = assistant_response[0].image_file.file_id\n\n\nprint(response_file_id)\n\n\nfile-98KwkltWZr4n0kZxMUdqIzTM\n\n\ncontent = client.files.retrieve_content(response_file_id)"
+  },
+  {
+    "objectID": "code/assistant-files.html#work-in-progress",
+    "href": "code/assistant-files.html#work-in-progress",
+    "title": "Assistants API and Files",
+    "section": "Work in progress 😊",
+    "text": "Work in progress 😊\ntbd"
+  },
+  {
+    "objectID": "code/assistant-files.html#run-steps",
+    "href": "code/assistant-files.html#run-steps",
+    "title": "Assistants API and Files",
+    "section": "Run steps",
+    "text": "Run steps\n\nBy listing the steps of a Run that called Code Interpreter, you can inspect the code input and outputs logs of Code Interpreter:\n\n\nrun_steps = client.beta.threads.runs.steps.list(\n  thread_id=thread.id,\n  run_id=run.id\n)\n\n\nprint(run_steps)"
+  },
+  {
+    "objectID": "slide.html",
+    "href": "slide.html",
+    "title": "Slides",
+    "section": "",
+    "text": "The following tutorials are mainly based on OpenAI’s documentation"
+  },
+  {
+    "objectID": "slide.html#introduction-to-assistants-api",
+    "href": "slide.html#introduction-to-assistants-api",
+    "title": "Slides",
+    "section": "1 Introduction to Assistants API",
+    "text": "1 Introduction to Assistants API\nThis starter guide walks through the key steps to create and run an Assistant that uses Code Interpreter.\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook in GitHub"
+  },
+  {
+    "objectID": "slide.html#assistants-api-with-files",
+    "href": "slide.html#assistants-api-with-files",
+    "title": "Slides",
+    "section": "2 Assistants API with Files",
+    "text": "2 Assistants API with Files\nLearn how to handle files in the Assistants API\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook in GitHub"
+  },
+  {
+    "objectID": "require.html",
+    "href": "require.html",
+    "title": "Requirements",
+    "section": "",
+    "text": "To start this lab on your local machine, you’ll need to install the modules listed in requirements.txt\n\n\n\n\n\n\nImportant\n\n\n\nVisit the “Programming Toolkit-webpage” to learn how to meet all requirements."
+  },
+  {
+    "objectID": "require.html#local-development",
+    "href": "require.html#local-development",
+    "title": "Requirements",
+    "section": "",
+    "text": "To start this lab on your local machine, you’ll need to install the modules listed in requirements.txt\n\n\n\n\n\n\nImportant\n\n\n\nVisit the “Programming Toolkit-webpage” to learn how to meet all requirements."
+  },
+  {
+    "objectID": "code/assistant-create.html",
+    "href": "code/assistant-create.html",
+    "title": "Create an Assistant",
+    "section": "",
+    "text": "Assistants API makes it easier to build assistive AI apps that have goals and can call models and tools"
+  },
+  {
+    "objectID": "code/assistant-create.html#what-is-an-assistant",
+    "href": "code/assistant-create.html#what-is-an-assistant",
+    "title": "Create an Assistant",
+    "section": "What is an Assistant?",
+    "text": "What is an Assistant?\n\nCan be configured to respond to users’ messages using several parameters like:\n\nInstructions: how the Assistant and model should behave or respond\nTools: the API supports Code Interpreter and Retrieval that are built and hosted by OpenAI.\nFunctions: the API allows you to define custom function signatures"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome 👋",
+    "section": "",
+    "text": "Welcome to the lab “Assistants API”\nThe Assistants API allows you to build AI assistants within your own applications. An Assistant has instructions and can leverage models, tools, and knowledge to respond to user queries.\nThe Assistants API currently supports three types of tools:\n\nCode Interpreter\nRetrieval\nFunction calling"
   },
   {
     "objectID": "slides/assistant-files.html#option-1-use-the-playground",
@@ -201,257 +467,5 @@
     "title": "Assistants API and Files",
     "section": "Run steps",
     "text": "Run steps\n\nBy listing the steps of a Run that called Code Interpreter, you can inspect the code input and outputs logs of Code Interpreter:\n\n\nrun_steps = client.beta.threads.runs.steps.list(\n  thread_id=thread.id,\n  run_id=run.id\n)\n\n\nprint(run_steps)\n\n\nSyncCursorPageRunStep"
-  },
-  {
-    "objectID": "slide.html",
-    "href": "slide.html",
-    "title": "Slides",
-    "section": "",
-    "text": "The following tutorials are mainly based on OpenAI’s documentation"
-  },
-  {
-    "objectID": "slide.html#introduction-to-assistants-api",
-    "href": "slide.html#introduction-to-assistants-api",
-    "title": "Slides",
-    "section": "1 Introduction to Assistants API",
-    "text": "1 Introduction to Assistants API\nThis starter guide walks through the key steps to create and run an Assistant that uses Code Interpreter.\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook in GitHub"
-  },
-  {
-    "objectID": "slide.html#assistants-api-with-files",
-    "href": "slide.html#assistants-api-with-files",
-    "title": "Slides",
-    "section": "2 Assistants API with Files",
-    "text": "2 Assistants API with Files\nLearn how to handle files in the Assistants API\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook in GitHub"
-  },
-  {
-    "objectID": "assignments.html",
-    "href": "assignments.html",
-    "title": "Assignments",
-    "section": "",
-    "text": "tbd"
-  },
-  {
-    "objectID": "require.html",
-    "href": "require.html",
-    "title": "Requirements",
-    "section": "",
-    "text": "To start this lab on your local machine, you’ll need to install the modules listed in requirements.txt\n\n\n\n\n\n\nImportant\n\n\n\nVisit the “Programming Toolkit-webpage” to learn how to meet all requirements."
-  },
-  {
-    "objectID": "require.html#local-development",
-    "href": "require.html#local-development",
-    "title": "Requirements",
-    "section": "",
-    "text": "To start this lab on your local machine, you’ll need to install the modules listed in requirements.txt\n\n\n\n\n\n\nImportant\n\n\n\nVisit the “Programming Toolkit-webpage” to learn how to meet all requirements."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome 👋",
-    "section": "",
-    "text": "Welcome to the lab “Assistants API”\nThe Assistants API allows you to build AI assistants within your own applications. An Assistant has instructions and can leverage models, tools, and knowledge to respond to user queries.\nThe Assistants API currently supports three types of tools:\n\nCode Interpreter\nRetrieval\nFunction calling"
-  },
-  {
-    "objectID": "slides/assistant-intro.html#what-is-an-assistant",
-    "href": "slides/assistant-intro.html#what-is-an-assistant",
-    "title": "Create an Assistant",
-    "section": "What is an Assistant?",
-    "text": "What is an Assistant?\n\nCan be configured to respond to users’ messages using several parameters like:\n\nInstructions: how the Assistant and model should behave or respond\nTools: the API supports Code Interpreter and Retrieval that are built and hosted by OpenAI.\nFunctions: the API allows you to define custom function signatures"
-  },
-  {
-    "objectID": "slides/assistant-intro.html#objects",
-    "href": "slides/assistant-intro.html#objects",
-    "title": "Create an Assistant",
-    "section": "Objects",
-    "text": "Objects"
-  },
-  {
-    "objectID": "slides/assistant-intro.html#what-objects-represent",
-    "href": "slides/assistant-intro.html#what-objects-represent",
-    "title": "Create an Assistant",
-    "section": "What objects represent",
-    "text": "What objects represent\n\nThread: A conversation session between an Assistant and a user. Threads store Messages.\nMessage: A message created by an Assistant or a user. Messages can include text, images, and other files. Messages stored as a list on the Thread.\nRun: An invocation of an Assistant on a Thread. The Assistant uses it’s configuration and the Thread’s Messages to perform tasks by calling models and tools. As part of a Run, the Assistant appends Messages to the Thread.\nRun Step: A detailed list of steps the Assistant took as part of a Run. An Assistant can call tools or create Messages during it’s run. Examining Run Steps allows you to introspect how the Assistant is getting to it’s final results."
-  },
-  {
-    "objectID": "slides/assistant-intro.html#demo",
-    "href": "slides/assistant-intro.html#demo",
-    "title": "Create an Assistant",
-    "section": "Demo",
-    "text": "Demo"
-  },
-  {
-    "objectID": "slides/assistant-intro.html#option-1-use-the-playground",
-    "href": "slides/assistant-intro.html#option-1-use-the-playground",
-    "title": "Create an Assistant",
-    "section": "Option 1: Use the Playground",
-    "text": "Option 1: Use the Playground\n\nYou can use OpenAI’s playground to create your Assistant in a user interface.\nGet the ID of your Assistant (in the Playground below the name of the Assistant)\n\n\n\nOPENAI_ASSISTANT = 'asst_7rBZjKivhDiUouokmEkW2Lal'\n\nassistant = client.beta.assistants.retrieve(OPENAI_ASSISTANT)"
-  },
-  {
-    "objectID": "slides/assistant-intro.html#option-2-use-the-the-python-api",
-    "href": "slides/assistant-intro.html#option-2-use-the-the-python-api",
-    "title": "Create an Assistant",
-    "section": "Option 2: Use the the Python API",
-    "text": "Option 2: Use the the Python API\n\nassistant = client.beta.assistants.create(\n    name=\"Math Tutor\",\n    instructions=\"You are a personal Math tutor. Write and run code to answer math questions.\",\n    tools=[{\"type\": \"code_interpreter\"}],\n    model=\"gpt-4-1106-preview\"\n)"
-  },
-  {
-    "objectID": "slides/assistant-intro.html#create-message",
-    "href": "slides/assistant-intro.html#create-message",
-    "title": "Create an Assistant",
-    "section": "Create message",
-    "text": "Create message\n\nA Message contains the user’s text, and optionally, any files that the user uploads (no images).\n\n\n\nmessage = client.beta.threads.messages.create(\n    thread_id=thread.id,\n    role=\"user\",\n    content=\"I need to solve the equation `3x + 11 = 14`. Can you help me?\"\n)"
-  },
-  {
-    "objectID": "slides/assistant-intro.html#inspect-message",
-    "href": "slides/assistant-intro.html#inspect-message",
-    "title": "Create an Assistant",
-    "section": "Inspect message",
-    "text": "Inspect message\n\nmessage\n\nThreadMessage(id='msg_9x1SPRtQLbWqXMVNIXkBZ0tF', assistant_id=None, content=[MessageContentText(text=Text(annotations=[], value='I need to solve the equation `3x + 11 = 14`. Can you help me?'), type='text')], created_at=1699425718, file_ids=[], metadata={}, object='thread.message', role='user', run_id=None, thread_id='thread_5uZgyTMf0t7Im9TPxvAVDmUD')"
-  },
-  {
-    "objectID": "slides/assistant-intro.html#display-user-message",
-    "href": "slides/assistant-intro.html#display-user-message",
-    "title": "Create an Assistant",
-    "section": "Display user message",
-    "text": "Display user message\n\nShow the content of the message\n\n\n\nmessage_content = message.content[0].text\nmessage_content.value\n\n\n‘I need to solve the equation 3x + 11 = 14. Can you help me?’"
-  },
-  {
-    "objectID": "slides/assistant-intro.html#create-run",
-    "href": "slides/assistant-intro.html#create-run",
-    "title": "Create an Assistant",
-    "section": "Create Run",
-    "text": "Create Run\n\nrun = client.beta.threads.runs.create(\n  thread_id=thread.id,\n  assistant_id=assistant.id,\n  instructions=\"Please address the user as Jane Doe. The user has a premium account.\"\n)"
-  },
-  {
-    "objectID": "slides/assistant-intro.html#retrieve-run",
-    "href": "slides/assistant-intro.html#retrieve-run",
-    "title": "Create an Assistant",
-    "section": "Retrieve Run",
-    "text": "Retrieve Run\n\nrun = client.beta.threads.runs.retrieve(\n  thread_id=thread.id,\n  run_id=run.id\n)\n\n\n\nprint(run)\n\n\n\nRun(id='run_EF9AwlwFnOQJ3wPRCIdNGVaS', assistant_id='asst_YhNjYRQT38e4I5N8WsZ7ihz1', cancelled_at=None, completed_at=None, created_at=1699425952, expires_at=1699426552, failed_at=None, file_ids=[], instructions='Please address the user as Jane Doe. The user has a premium account.', last_error=None, metadata={}, model='gpt-4-1106-preview', object='thread.run', required_action=None, started_at=None, status='queued', thread_id='thread_5uZgyTMf0t7Im9TPxvAVDmUD', tools=[ToolAssistantToolsCode(type='code_interpreter')])"
-  },
-  {
-    "objectID": "slides/assistant-intro.html#retrieve-messages",
-    "href": "slides/assistant-intro.html#retrieve-messages",
-    "title": "Create an Assistant",
-    "section": "Retrieve Messages",
-    "text": "Retrieve Messages\nOnce the Run completes, you can retrieve the Messages added by the Assistant to the Thread.\n\nmessages_cursor = client.beta.threads.messages.list(\n  thread_id=thread.id\n)\n\n\n\nmessages_cursor\n\n\n\nSyncCursorPage[ThreadMessage](data=[ThreadMessage(id='msg_aFjIRT2SoI0i3zcAVlFsx3Yn', assistant_id='asst_YhNjYRQT38e4I5N8WsZ7ihz1', content=[MessageContentText(text=Text(annotations=[], value='The solution to the equation \\\\(3x + 11 = 14\\\\) is \\\\(x = 1\\\\).'), type='text')], created_at=1699425958, file_ids=[], metadata={}, object='thread.message', role='assistant', run_id='run_EF9AwlwFnOQJ3wPRCIdNGVaS', thread_id='thread_5uZgyTMf0t7Im9TPxvAVDmUD'), ThreadMessage(id='msg_9x1SPRtQLbWqXMVNIXkBZ0tF', assistant_id=None, content=[MessageContentText(text=Text(annotations=[], value='I need to solve the equation `3x + 11 = 14`. Can you help me?'), type='text')], created_at=1699425718, file_ids=[], metadata={}, object='thread.message', role='user', run_id=None, thread_id='thread_5uZgyTMf0t7Im9TPxvAVDmUD')], object='list', first_id='msg_aFjIRT2SoI0i3zcAVlFsx3Yn', last_id='msg_9x1SPRtQLbWqXMVNIXkBZ0tF', has_more=False)"
-  },
-  {
-    "objectID": "slides/assistant-intro.html#only-display-response-of-assistant",
-    "href": "slides/assistant-intro.html#only-display-response-of-assistant",
-    "title": "Create an Assistant",
-    "section": "Only display response of assistant",
-    "text": "Only display response of assistant\n\n# Iterate over the cursor to get all messages\nmessages = [message for message in messages_cursor]\n\n# The assistant's response should be the first message in the thread\nassistant_response = messages[0].content if messages else \"No response yet.\"\nprint(assistant_response)\n\n\n\n- [MessageContentText(text=Text(annotations=[], value='Certainly, Jane Doe. The solution to the equation \\\\(3x + 11 = 14\\\\) is \\\\(x = 1\\\\).'), type='text')]"
-  },
-  {
-    "objectID": "slides/assistant-intro.html#extract-only-text-response",
-    "href": "slides/assistant-intro.html#extract-only-text-response",
-    "title": "Create an Assistant",
-    "section": "Extract only text response",
-    "text": "Extract only text response\n\nassistant_response[0].text.value\n\n\n‘Certainly, Jane Doe. The solution to the equation \\(3x + 11 = 14\\) is \\(x = 1\\).’"
-  },
-  {
-    "objectID": "code/assistant-files.html",
-    "href": "code/assistant-files.html",
-    "title": "Assistants API and Files",
-    "section": "",
-    "text": "We create an Assistant that can create data visualization based on a .csv file to demonstrate how to upload and download files using OpenAi’s Assistants API."
-  },
-  {
-    "objectID": "code/assistant-files.html#how-to-obbtain-the-thread-id",
-    "href": "code/assistant-files.html#how-to-obbtain-the-thread-id",
-    "title": "Assistants API and Files",
-    "section": "How to Obbtain the Thread id",
-    "text": "How to Obbtain the Thread id\n\nthread\n\n\nThread(id=‘thread_iB6WpSbp6r6j9ayrdHIyyafC’, created_at=1699520936, metadata={}, object=‘thread’)\n\n\nthread_id = thread.id\nprint(f'Thread ID: {thread_id}')\n\n\nThread ID: thread_iB6WpSbp6r6j9ayrdHIyyafC"
-  },
-  {
-    "objectID": "code/assistant-files.html#create-file",
-    "href": "code/assistant-files.html#create-file",
-    "title": "Assistants API and Files",
-    "section": "Create file",
-    "text": "Create file\n\nUsually, we could simply input the file in a UI\nHere, we have to upload it\n\n\nfile_response = client.files.create(\n  file=open(\"cars.csv\", \"rb\"),\n  purpose='assistants'\n)\n\n\nfile_id = file_response.id  \n\nprint(file_id)\n\n\nfile-4la1LvfQKJMgGxsKobJQBWkH"
-  },
-  {
-    "objectID": "code/assistant-files.html#create-message",
-    "href": "code/assistant-files.html#create-message",
-    "title": "Assistants API and Files",
-    "section": "Create message",
-    "text": "Create message\n\nA Message contains the user’s text, and optionally, any files that the user uploads (no images).\n\n\nmessage = client.beta.threads.messages.create(\n    thread_id=thread.id,\n    role='user',\n    content=\"Create a data visualization based on the relationship of the variables Miles_per_Gallon and Horsepower in this file. Interpret the findings of the plot you have created\",\n    file_ids=[file_id]\n)"
-  },
-  {
-    "objectID": "code/assistant-files.html#run-objects",
-    "href": "code/assistant-files.html#run-objects",
-    "title": "Assistants API and Files",
-    "section": "Run objects",
-    "text": "Run objects"
-  },
-  {
-    "objectID": "code/assistant-files.html#run-objects-explained",
-    "href": "code/assistant-files.html#run-objects-explained",
-    "title": "Assistants API and Files",
-    "section": "Run objects explained",
-    "text": "Run objects explained\n\n\n\nSTATUS\nDEFINITION\n\n\n\n\nqueued\nWhen Runs are first created or when you complete the required_action, they are moved to a queued status. They should almost immediately move to in_progress.\n\n\nin_progress\nWhile in_progress, the Assistant uses the model and tools to perform steps. You can view progress being made by the Run by examining the Run Steps.\n\n\ncompleted\nThe Run successfully completed! You can now view all Messages the Assistant added to the Thread, and all the steps the Run took. You can also continue the conversation by adding more user Messages to the Thread and creating another Run.\n\n\nrequires_action\nWhen using the Function calling tool, the Run will move to a required_action state once the model determines the names and arguments of the functions to be called. You must then run those functions and submit the outputs before the run proceeds. If the outputs are not provided before the expires_at timestamp passes (roughly 10 mins past creation), the run will move to an expired status.\n\n\nexpired\nThis happens when the function calling outputs were not submitted before expires_at and the run expires. Additionally, if the runs take too long to execute and go beyond the time stated in expires_at, our systems will expire the run.\n\n\ncancelling\nYou can attempt to cancel an in_progress run using the Cancel Run endpoint. Once the attempt to cancel succeeds, status of the Run moves to cancelled. Cancellation is attempted but not guaranteed.\n\n\ncancelled\nRun was successfully cancelled.\n\n\nfailed\nYou can view the reason for the failure by looking at the last_error object in the Run. The timestamp for the failure will be recorded under failed_at."
-  },
-  {
-    "objectID": "code/assistant-files.html#inspect-status-of-the-run",
-    "href": "code/assistant-files.html#inspect-status-of-the-run",
-    "title": "Assistants API and Files",
-    "section": "Inspect status of the Run",
-    "text": "Inspect status of the Run\n\nYou need to wait until the status=‘completed’ before you can retrieve the Messages added by the Assistant.\nLet’s check the status\n\n\nrun.status\n\n\n‘queued’"
-  },
-  {
-    "objectID": "code/assistant-files.html#retrieve-current-run",
-    "href": "code/assistant-files.html#retrieve-current-run",
-    "title": "Assistants API and Files",
-    "section": "Retrieve current Run",
-    "text": "Retrieve current Run\n\nAgain, check the current status with retrieve\n\n\nrun = client.beta.threads.runs.retrieve(\n  thread_id=thread.id,\n  run_id=run.id\n)\n\n\nprint(run.status)\n\n\n‘completed’"
-  },
-  {
-    "objectID": "code/assistant-files.html#inspect-all-messages",
-    "href": "code/assistant-files.html#inspect-all-messages",
-    "title": "Assistants API and Files",
-    "section": "Inspect all messages",
-    "text": "Inspect all messages\n\nprint(messages_cursor)\n\nSyncCursorPage[ThreadMessage](data=[ThreadMessage(id='msg_mMdjZ6raDxzbYr065ojq9jav', assistant_id='asst_oLnJ4yhowVZrqUecc8OCtNaL', content=[MessageContentImageFile(image_file=ImageFile(file_id='file-98KwkltWZr4n0kZxMUdqIzTM'), type='image_file'), MessageContentText(text=Text(annotations=[], value=\"The scatter plot above displays the relationship between 'Horsepower' and 'Miles per Gallon' (MPG). From the plot, we can observe the following:\\n\\n- There is a general negative correlation between Horsepower and Miles per Gallon. This means that as Horsepower increases, MPG tends to decrease.\\n- This relationship can be attributed to the fact that cars with higher horsepower values are usually more powerful and may require more fuel to sustain that power, resulting in lower fuel efficiency.\\n\\nHowever, it is important to note that other factors not depicted in this plot could also influence the MPG, such as the weight of the car, the type of engine, and aerodynamic design. For more comprehensive insights, it would be beneficial to consider these variables in future analyses.\\n\\nWould you like to perform any further analysis on this dataset or have any other questions?\"), type='text')], created_at=1699521035, file_ids=[], metadata={}, object='thread.message', role='assistant', run_id='run_kctoJoy5qZcNukQK5dKadfMD', thread_id='thread_iB6WpSbp6r6j9ayrdHIyyafC'), ThreadMessage(id='msg_vaS3zpOTi6sDzeXwZWyQjEvT', assistant_id='asst_oLnJ4yhowVZrqUecc8OCtNaL', content=[MessageContentText(text=Text(annotations=[], value=\"The data has been successfully loaded and it contains the following columns: 'Name', 'Miles_per_Gallon', 'Cylinders', 'Displacement', 'Horsepower', 'Weight_in_lbs', 'Acceleration', 'Year', and 'Origin'.\\n\\nNext, I will create a scatter plot to visualize the relationship between 'Miles_per_Gallon' (MPG) and 'Horsepower'. The scatter plot will help us understand if there's a trend or correlation between these two variables. Let's create the plot now.\"), type='text')], created_at=1699521019, file_ids=[], metadata={}, object='thread.message', role='assistant', run_id='run_kctoJoy5qZcNukQK5dKadfMD', thread_id='thread_iB6WpSbp6r6j9ayrdHIyyafC'), ThreadMessage(id='msg_jFgAaY1O0aTLw1bI7eyUuqy0', assistant_id='asst_oLnJ4yhowVZrqUecc8OCtNaL', content=[MessageContentText(text=Text(annotations=[], value=\"First, let's load the .csv file and preview its contents to understand the structure of the data. Then we can analyze the variables Miles_per_Gallon and Horsepower and create a data visualization to interpret their relationship. I will start by loading the data.\"), type='text')], created_at=1699521009, file_ids=[], metadata={}, object='thread.message', role='assistant', run_id='run_kctoJoy5qZcNukQK5dKadfMD', thread_id='thread_iB6WpSbp6r6j9ayrdHIyyafC'), ThreadMessage(id='msg_0WMtoLxPzCXB14wNTIicUkqO', assistant_id=None, content=[MessageContentText(text=Text(annotations=[], value='Create a data visualization based on the relationship of the variables Miles_per_Gallon and Horsepower in this file. Interpret the findings of the plot you have created'), type='text')], created_at=1699521002, file_ids=['file-4la1LvfQKJMgGxsKobJQBWkH'], metadata={}, object='thread.message', role='user', run_id=None, thread_id='thread_iB6WpSbp6r6j9ayrdHIyyafC')], object='list', first_id='msg_mMdjZ6raDxzbYr065ojq9jav', last_id='msg_0WMtoLxPzCXB14wNTIicUkqO', has_more=False)"
-  },
-  {
-    "objectID": "code/assistant-files.html#display-response-of-assistant",
-    "href": "code/assistant-files.html#display-response-of-assistant",
-    "title": "Assistants API and Files",
-    "section": "Display response of assistant",
-    "text": "Display response of assistant\n\n# Iterate over the cursor to get all messages\nmessages = [message for message in messages_cursor]\n\n# The assistant's response should be the first message in the thread\nassistant_response = messages[0].content if messages else \"No response yet.\""
-  },
-  {
-    "objectID": "code/assistant-files.html#output",
-    "href": "code/assistant-files.html#output",
-    "title": "Assistants API and Files",
-    "section": "Output",
-    "text": "Output\n\nprint(assistant_response)\n\n\n[MessageContentImageFile(image_file=ImageFile(file_id='file-98KwkltWZr4n0kZxMUdqIzTM'), type='image_file'), MessageContentText(text=Text(annotations=[], value=\"The scatter plot above displays the relationship between 'Horsepower' and 'Miles per Gallon' (MPG). From the plot, we can observe the following:\\n\\n- There is a general negative correlation between Horsepower and Miles per Gallon. This means that as Horsepower increases, MPG tends to decrease.\\n- This relationship can be attributed to the fact that cars with higher horsepower values are usually more powerful and may require more fuel to sustain that power, resulting in lower fuel efficiency.\\n\\nHowever, it is important to note that other factors not depicted in this plot could also influence the MPG, such as the weight of the car, the type of engine, and aerodynamic design. For more comprehensive insights, it would be beneficial to consider these variables in future analyses.\\n\\nWould you like to perform any further analysis on this dataset or have any other questions?\"), type='text')]"
-  },
-  {
-    "objectID": "code/assistant-files.html#extract-only-text-response",
-    "href": "code/assistant-files.html#extract-only-text-response",
-    "title": "Assistants API and Files",
-    "section": "Extract only text response",
-    "text": "Extract only text response\n\nassistant_response[1].text.value\n\n\n“The scatter plot above displays the relationship between ‘Horsepower’ and ‘Miles per Gallon’ (MPG). From the plot, we can observe the following:- There is a general negative correlation between Horsepower and Miles per Gallon. This means that as Horsepower increases, MPG tends to decrease.- This relationship can be attributed to the fact that cars with higher horsepower values are usually more powerful and may require more fuel to sustain that power, resulting in lower fuel efficiency., it is important to note that other factors not depicted in this plot could also influence the MPG, such as the weight of the car, the type of engine, and aerodynamic design. For more comprehensive insights, it would be beneficial to consider these variables in future analyses.you like to perform any further analysis on this dataset or have any other questions?”"
-  },
-  {
-    "objectID": "code/assistant-files.html#get-file-content",
-    "href": "code/assistant-files.html#get-file-content",
-    "title": "Assistants API and Files",
-    "section": "Get file content",
-    "text": "Get file content\n\nThe file content can then be downloaded by passing the file ID to the Files API\n\n\nresponse_file_id = assistant_response[0].image_file.file_id\n\n\nprint(response_file_id)\n\n\nfile-98KwkltWZr4n0kZxMUdqIzTM\n\n\ncontent = client.files.retrieve_content(response_file_id)"
-  },
-  {
-    "objectID": "code/assistant-files.html#work-in-progress",
-    "href": "code/assistant-files.html#work-in-progress",
-    "title": "Assistants API and Files",
-    "section": "Work in progress 😊",
-    "text": "Work in progress 😊\ntbd"
-  },
-  {
-    "objectID": "code/assistant-files.html#run-steps",
-    "href": "code/assistant-files.html#run-steps",
-    "title": "Assistants API and Files",
-    "section": "Run steps",
-    "text": "Run steps\n\nBy listing the steps of a Run that called Code Interpreter, you can inspect the code input and outputs logs of Code Interpreter:\n\n\nrun_steps = client.beta.threads.runs.steps.list(\n  thread_id=thread.id,\n  run_id=run.id\n)\n\n\nprint(run_steps)"
   }
 ]
