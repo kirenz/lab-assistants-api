@@ -1,0 +1,53 @@
+---
+title: "Welcome to Building Your First AI Assistant"
+jupyter: "python3"
+---
+
+## Setup
+
+Let's get started!
+
+```{python}
+import openai
+from openai import OpenAI
+import os
+from dotenv import load_dotenv, find_dotenv
+
+# Load the environment variables file
+_ = load_dotenv(find_dotenv())
+
+# Set the API key from the environment variable
+openai.api_key = os.getenv('OPENAI_API_KEY')
+```
+
+
+## Start Session
+
+First, let's create a session with the OpenAI client. This will establish our connection to the API.
+
+```{python}
+client = OpenAI()
+```
+
+## Create an Assistant
+
+Now, we'll take a look at an example assistant. This assistant will use its capabilities to write and run code that solves math questions. Change the `name` and `instructions`:
+
+```{python}
+assistant = client.beta.assistants.create(
+    name="Math Tutor",
+    instructions="You are a personal Math tutor. Write and run code to answer math questions.",
+    tools=[{"type": "code_interpreter"}],
+    model="gpt-4-1106-preview"
+)
+```
+
+Once this code is executed, an AI Assistant named "Math Tutor" will be created and available on the OpenAI platform. The Assistant will have a unique ID, which can be used to integrate it into other applications, such as a Streamlit app. This integration allows you to leverage the Assistant's capabilities in different environments, enabling interactive, real-time user engagement with the AI across various platforms.
+
+
+## Explanation of Code
+
+- Importing Libraries and Setting Environment: We import necessary libraries like openai for API access, and os for operating system interactions, particularly for environment variables. dotenv is used to safely load API keys from a .env file, preventing the need to hard-code sensitive information in our script.
+
+- Creating an Assistant: We configure and create an assistant named "Math Tutor" with specific instructions to act as a math tutor.
+The code_interpreter tool is included to enable the assistant to execute and return results from code snippets, which is essential for solving mathematical queries. The model used is gpt-4-1106-preview, a specific version of OpenAI's advanced GPT-4 model, optimized for performing tasks like these.
