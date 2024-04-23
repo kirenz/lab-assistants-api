@@ -6,9 +6,7 @@ title: "Welcome to Building Your First AI Assistant"
 
 Let's get started!
 
-```{python}
-# | eval: false
-
+```python
 import openai
 from openai import OpenAI
 import os
@@ -26,9 +24,7 @@ openai.api_key = os.getenv('OPENAI_API_KEY')
 
 First, let's create a session with the OpenAI client. This will establish our connection to the API.
 
-```{python}
-# | eval: false
-
+```python
 client = OpenAI()
 ```
 
@@ -36,9 +32,7 @@ client = OpenAI()
 
 Now, we'll take a look at an example assistant. This assistant will use its capabilities to write and run code that solves math questions. Change the `name` and `instructions`:
 
-```{python}
-# | eval: false
-
+```python
 assistant = client.beta.assistants.create(
     name="Math Tutor",
     instructions="You are a personal Math tutor. Write and run code to answer math questions.",
