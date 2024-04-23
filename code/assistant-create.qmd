@@ -1,6 +1,5 @@
 ---
 title: "Welcome to Building Your First AI Assistant"
-jupyter: "python3"
 ---
 
 ## Setup
