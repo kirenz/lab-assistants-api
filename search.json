@@ -338,16 +338,37 @@
   {
     "objectID": "code/assistant-create.html",
     "href": "code/assistant-create.html",
-    "title": "Create an Assistant",
+    "title": "Welcome to Building Your First AI Assistant",
     "section": "",
-    "text": "Assistants API makes it easier to build assistive AI apps that have goals and can call models and tools"
+    "text": "Let’s get started!\nimport openai\nfrom openai import OpenAI\nimport os\nfrom dotenv import load_dotenv, find_dotenv\n\n# Load the environment variables file\n_ = load_dotenv(find_dotenv())\n\n# Set the API key from the environment variable\nopenai.api_key = os.getenv('OPENAI_API_KEY')"
   },
   {
-    "objectID": "code/assistant-create.html#what-is-an-assistant",
-    "href": "code/assistant-create.html#what-is-an-assistant",
-    "title": "Create an Assistant",
-    "section": "What is an Assistant?",
-    "text": "What is an Assistant?\n\nCan be configured to respond to users’ messages using several parameters like:\n\nInstructions: how the Assistant and model should behave or respond\nTools: the API supports Code Interpreter and Retrieval that are built and hosted by OpenAI.\nFunctions: the API allows you to define custom function signatures"
+    "objectID": "code/assistant-create.html#setup",
+    "href": "code/assistant-create.html#setup",
+    "title": "Welcome to Building Your First AI Assistant",
+    "section": "",
+    "text": "Let’s get started!\nimport openai\nfrom openai import OpenAI\nimport os\nfrom dotenv import load_dotenv, find_dotenv\n\n# Load the environment variables file\n_ = load_dotenv(find_dotenv())\n\n# Set the API key from the environment variable\nopenai.api_key = os.getenv('OPENAI_API_KEY')"
+  },
+  {
+    "objectID": "code/assistant-create.html#start-session",
+    "href": "code/assistant-create.html#start-session",
+    "title": "Welcome to Building Your First AI Assistant",
+    "section": "Start Session",
+    "text": "Start Session\nFirst, let’s create a session with the OpenAI client. This will establish our connection to the API.\nclient = OpenAI()"
+  },
+  {
+    "objectID": "code/assistant-create.html#create-an-assistant",
+    "href": "code/assistant-create.html#create-an-assistant",
+    "title": "Welcome to Building Your First AI Assistant",
+    "section": "Create an Assistant",
+    "text": "Create an Assistant\nNow, we’ll take a look at an example assistant. This assistant will use its capabilities to write and run code that solves math questions. Change the name and instructions:\nassistant = client.beta.assistants.create(\n    name=\"Math Tutor\",\n    instructions=\"You are a personal Math tutor. Write and run code to answer math questions.\",\n    tools=[{\"type\": \"code_interpreter\"}],\n    model=\"gpt-4-1106-preview\"\n)\nOnce this code is executed, an AI Assistant named “Math Tutor” will be created and available on the OpenAI platform. The Assistant will have a unique ID, which can be used to integrate it into other applications, such as a Streamlit app. This integration allows you to leverage the Assistant’s capabilities in different environments, enabling interactive, real-time user engagement with the AI across various platforms."
+  },
+  {
+    "objectID": "code/assistant-create.html#explanation-of-code",
+    "href": "code/assistant-create.html#explanation-of-code",
+    "title": "Welcome to Building Your First AI Assistant",
+    "section": "Explanation of Code",
+    "text": "Explanation of Code\n\nImporting Libraries and Setting Environment: We import necessary libraries like openai for API access, and os for operating system interactions, particularly for environment variables. dotenv is used to safely load API keys from a .env file, preventing the need to hard-code sensitive information in our script.\nCreating an Assistant: We configure and create an assistant named “Math Tutor” with specific instructions to act as a math tutor. The code_interpreter tool is included to enable the assistant to execute and return results from code snippets, which is essential for solving mathematical queries. The model used is gpt-4-1106-preview, a specific version of OpenAI’s advanced GPT-4 model, optimized for performing tasks like these."
   },
   {
     "objectID": "index.html",
