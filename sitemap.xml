@@ -2,42 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kirenz.github.io/lab-assistants-api/assignments.html</loc>
-    <lastmod>2024-04-27T19:42:49.398Z</lastmod>
+    <lastmod>2024-04-29T13:24:05.231Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/lab-assistants-api/slides/assistant-intro.html</loc>
-    <lastmod>2024-04-27T19:42:49.402Z</lastmod>
+    <lastmod>2024-04-29T13:24:05.235Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/lab-assistants-api/code/assistant-intro.html</loc>
-    <lastmod>2024-04-27T19:42:49.398Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kirenz.github.io/lab-assistants-api/code/assistant-files.html</loc>
-    <lastmod>2024-04-27T19:42:49.398Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kirenz.github.io/lab-assistants-api/anaconda-environment.html</loc>
-    <lastmod>2024-04-27T19:42:49.398Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kirenz.github.io/lab-assistants-api/slide.html</loc>
-    <lastmod>2024-04-27T19:42:49.402Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kirenz.github.io/lab-assistants-api/require.html</loc>
-    <lastmod>2024-04-27T19:42:49.402Z</lastmod>
+    <lastmod>2024-04-29T13:24:05.231Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/lab-assistants-api/code/assistant-create.html</loc>
-    <lastmod>2024-04-27T19:42:49.398Z</lastmod>
+    <lastmod>2024-04-29T13:24:05.231Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kirenz.github.io/lab-assistants-api/require.html</loc>
+    <lastmod>2024-04-29T13:24:05.235Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kirenz.github.io/lab-assistants-api/slide.html</loc>
+    <lastmod>2024-04-29T13:24:05.235Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kirenz.github.io/lab-assistants-api/anaconda-environment.html</loc>
+    <lastmod>2024-04-29T13:24:05.231Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kirenz.github.io/lab-assistants-api/code/assistant-files.html</loc>
+    <lastmod>2024-04-29T13:24:05.231Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kirenz.github.io/lab-assistants-api/code/assistant-update.html</loc>
+    <lastmod>2024-04-29T13:24:05.231Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/lab-assistants-api/index.html</loc>
-    <lastmod>2024-04-27T19:42:49.402Z</lastmod>
+    <lastmod>2024-04-29T13:24:05.235Z</lastmod>
   </url>
   <url>
     <loc>https://kirenz.github.io/lab-assistants-api/slides/assistant-files.html</loc>
-    <lastmod>2024-04-27T19:42:49.402Z</lastmod>
+    <lastmod>2024-04-29T13:24:05.235Z</lastmod>
   </url>
 </urlset>
